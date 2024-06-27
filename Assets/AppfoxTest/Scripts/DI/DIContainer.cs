@@ -21,8 +21,6 @@ namespace AppFoxTest
 
         private DIContainer _wrappedDIContainer;
 
-        public event Action<object> OnAddObjectToDI;
-
         public DIContainer()
         {
 
@@ -44,7 +42,6 @@ namespace AppFoxTest
                 initializable.Init();
             }
             _installedObjectsInContext.Add(o);
-            OnAddObjectToDI?.Invoke(o);
         }
 
         public T GetSingle<T>()

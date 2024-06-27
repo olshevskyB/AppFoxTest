@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: ScenesConfig
   m_EditorClassIdentifier: 
   Scenes:
-  - {fileID: 11400000, guid: 4412f6bbc9888db42a21a0435c5476b4, type: 2}
-  - {fileID: 11400000, guid: 96444311285646540bf7a8a57ddb0783, type: 2}
+  - {fileID: 11400000, guid: 52ee5aa024eebde4299c39a514df4b6d, type: 2}
   StartScene: {fileID: 11400000, guid: 52ee5aa024eebde4299c39a514df4b6d, type: 2}

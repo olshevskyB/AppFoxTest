@@ -16,17 +16,7 @@ namespace AppFoxTest
                 return;
             }
             Instance = this;
-
-            _diContainer.OnAddObjectToDI += OnAddObjectToDI;
             Init();
-        }
-
-        private void OnAddObjectToDI(object obj)
-        {
-            if (obj is MonoBehaviour mono)
-            {
-                DontDestroyOnLoad(mono);
-            }
         }
     }
 }
