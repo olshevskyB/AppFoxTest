@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/AppfoxTest/Data/Scenes/Bootstrap.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/AppfoxTest/Data/Scenes/MainMenu.unity
+    guid: 67befac0bfccd0c4d832a9b99fc06894
+  - enabled: 1
+    path: Assets/AppfoxTest/Data/Scenes/Levels/Level_1.unity
+    guid: cd97fb2b43db12a48a40ff254e1210a1
+  - enabled: 1
+    path: Assets/AppfoxTest/Data/Scenes/Levels/Level_2.unity
+    guid: edd50340e7bf6ee4ba73bc449a972ac6
   m_configObjects: {}
