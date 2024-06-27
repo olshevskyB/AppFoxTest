@@ -15,19 +15,20 @@ namespace AppFoxTest
             _container = container;
         }
 
-        public void Load<T>(GameObjectSO<T> so, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null) where T : UnityEngine.Object
+        public void Load<T>(GameObjectSO<T> so, IUnloader unloader, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null) where T : UnityEngine.Object
         {
-            StartCoroutine(StartLoading(so, onLoaded, onProgress));
+            StartCoroutine(StartLoading(so, unloader, onLoaded, onProgress));
         }
 
-        public T Load<T>(T prefab) where T : UnityEngine.Object
+        public T Load<T>(T prefab, IUnloader unloader) where T : UnityEngine.Object
         {
             var result = Instantiate(prefab);
             InjectObjects(result);
+            unloader.AddObject(result.GameObject());
             return result;
         }
 
-        private IEnumerator StartLoading<T>(GameObjectSO<T> so, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null) where T : UnityEngine.Object
+        private IEnumerator StartLoading<T>(GameObjectSO<T> so, IUnloader unloader, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null) where T : UnityEngine.Object
         {
             var asyncLoad = InstantiateAsync(so.Prefab);
             while (!asyncLoad.isDone)
@@ -37,6 +38,7 @@ namespace AppFoxTest
             }
             var result = asyncLoad.Result.First();
             InjectObjects(result);
+            unloader.AddObject(result.GameObject());
             onLoaded.Invoke(result);
         }
 

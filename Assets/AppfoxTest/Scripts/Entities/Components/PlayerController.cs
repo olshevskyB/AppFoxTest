@@ -3,6 +3,7 @@ using UnityEngine;
 namespace AppFoxTest
 {
     [RequireComponent(typeof(Movable))]
+    [RequireComponent(typeof(PlayerTriggerHandler))]
     public class PlayerController : EntityController, IInjectable
     {
         private SceneEventBus _eventBus;

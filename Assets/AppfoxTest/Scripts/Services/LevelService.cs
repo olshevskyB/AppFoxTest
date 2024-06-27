@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AppFoxTest
 {
@@ -8,17 +7,25 @@ namespace AppFoxTest
         private IPrefabLoader _prefabLoader;
         private SceneEventBus _sceneEventBus;
         private LevelsConfig _levelsConfig;
+        private IUnloader _unloader;
 
         public void Inject(DIContainer container)
         {
             _prefabLoader = container.GetSingle<IPrefabLoader>();
             _sceneEventBus = container.GetSingle<SceneEventBus>();
             _levelsConfig = container.GetSingle<LevelsConfig>();
+            _unloader = container.GetSingle<IUnloader>();
         }
 
         public void Init()
         {
-            _prefabLoader.Load(_levelsConfig.FirstLevel, OnLoaded, OnProgress);
+            _sceneEventBus.OnInvokeNextLevel += LoadLevel;
+            LoadLevel(_levelsConfig.FirstLevel);
+        }
+
+        private void OnDestroy()
+        {
+            _sceneEventBus.OnInvokeNextLevel -= LoadLevel;
         }
 
         private void OnProgress(GameObjectSO<LevelView> so, float progress)
@@ -31,10 +38,10 @@ namespace AppFoxTest
             SetupLevel(level);
             _sceneEventBus.OnLevelLoaded?.Invoke(level);
         }
-      
+
         private void SetupLevel(LevelView level)
         {
-            PlayerController playerController = _prefabLoader.Load(_levelsConfig.PlayerController);
+            PlayerController playerController = _prefabLoader.Load(_levelsConfig.PlayerController, _unloader);
             SetObjectToPoint(playerController.transform, level.transform, level.PlayerSpawnPoint);
         }
 
@@ -42,6 +49,12 @@ namespace AppFoxTest
         {
             objectTransform.transform.parent = parent;
             objectTransform.transform.SetPositionAndRotation(point.position, point.rotation);
+        }
+
+        private void LoadLevel(LevelSO level)
+        {
+            _unloader.Unload();
+            _prefabLoader.Load(level, _unloader, OnLoaded, OnProgress);
         }
     }
 }
