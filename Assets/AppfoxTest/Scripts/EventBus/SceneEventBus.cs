@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace AppFoxTest
 {
@@ -6,5 +7,8 @@ namespace AppFoxTest
     {
         public Action<LevelView> OnLevelLoaded;
         public Action<GameObjectSO<LevelView>, float> OnLevelLoadingProgress;
+        public Action<Vector2> OnAxisPressed;
+        public Action OnJumpButtonPressed;
+        public Action OnAttackButtonPressed;
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    public class LevelView : MonoBehaviour
+    public abstract class EntityView : MonoBehaviour
     {
 
     }

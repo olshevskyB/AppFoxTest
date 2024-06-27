@@ -11,11 +11,10 @@ namespace AppFoxTest
             _diContainer.AddNewObjectAndInit(new SceneEventBus());
             _diContainer.AddNewObjectAndInit(_levelsConfig);
 
-
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<PrefabLoader>());
-            _diContainer.AddNewObjectAndInit(CreateAsGameObject<PrefabService>());
 
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<LevelService>());
+            _diContainer.AddNewObjectAndInit(CreateAsGameObject<InputService>());
         }
     }
 }
