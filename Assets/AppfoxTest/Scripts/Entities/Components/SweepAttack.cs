@@ -36,7 +36,7 @@ namespace AppFoxTest
                 _hurtBoxesRoot.gameObject.SetActive(true);
             }
             float angle = Mathf.Lerp(_startAndFinaleRotationY.x, _startAndFinaleRotationY.y, progress);
-            _hurtBoxesRoot.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+            _hurtBoxesRoot.localRotation = Quaternion.AngleAxis(angle, Vector3.up);
         }
 
         protected override void OnEndAttack()

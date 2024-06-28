@@ -54,6 +54,16 @@ namespace AppFoxTest
             return installed;
         }
 
+        public T GetTransient<T>() where T: ICloneable
+        {
+            T installed = _installedObjectsInContext.OfType<T>().FirstOrDefault(o => o is T);
+            if (installed == null)
+            {
+                Debug.LogError($"Unable to resolve {typeof(T)}!");
+            }
+            return (T)installed.Clone();
+        }
+
         public IEnumerable<T> GetCollection<T>()
         {
             IEnumerable<T> installed = _installedObjectsInContext.OfType<T>();

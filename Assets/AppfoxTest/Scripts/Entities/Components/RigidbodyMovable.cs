@@ -17,5 +17,11 @@ namespace AppFoxTest
         {
             _rigidbody.AddForce(movement * Time.deltaTime);
         }
+
+        public override void LookAt(Vector3 position)
+        {
+            position = new Vector3(position.x, transform.position.y, position.z);
+            transform.LookAt(position, Vector3.up);
+        }
     }
 }

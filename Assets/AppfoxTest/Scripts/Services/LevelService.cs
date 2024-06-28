@@ -14,7 +14,7 @@ namespace AppFoxTest
             _prefabLoader = container.GetSingle<IPrefabLoader>();
             _sceneEventBus = container.GetSingle<SceneEventBus>();
             _levelsConfig = container.GetSingle<LevelsConfig>();
-            _unloader = container.GetSingle<IUnloader>();
+            _unloader = container.GetTransient<IUnloader>();
         }
 
         public void Init()
@@ -43,6 +43,7 @@ namespace AppFoxTest
         {
             PlayerController playerController = _prefabLoader.Load(_levelsConfig.PlayerController, _unloader);
             SetObjectToPoint(playerController.transform, level.transform, level.PlayerSpawnPoint);
+            _sceneEventBus.OnPlayerSpawn(playerController);
         }
 
         private void SetObjectToPoint(Transform objectTransform, Transform point, Transform parent)

@@ -12,6 +12,14 @@ namespace AppFoxTest
             objectForUnload.Add(obj);
         }
 
+        public object Clone()
+        {
+            return new Unloader()
+            {
+                objectForUnload = new List<Object>()
+            };
+        }
+
         public void Unload()
         {
             foreach (UnityEngine.Object mono in objectForUnload)

@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelsConfig: {fileID: 11400000, guid: 4a26243b3bc805547869a2d7703f23cd, type: 2}
+  _cameraConfig: {fileID: 11400000, guid: 9370772e26adcb4449e7a80efe562439, type: 2}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

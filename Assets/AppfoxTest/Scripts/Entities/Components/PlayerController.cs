@@ -20,6 +20,11 @@ namespace AppFoxTest
             AddListeners();
         }
 
+        private void Update()
+        {
+            Debug.DrawLine(transform.position, transform.forward * 5f, Color.red);
+        }
+
         private void OnDestroy()
         {
             RemoveListeners();
@@ -30,6 +35,7 @@ namespace AppFoxTest
             _eventBus.OnAttackButtonPressed += OnAttackButtonPressed;
             _eventBus.OnAxisPressed += OnAxisPressed;
             _eventBus.OnJumpButtonPressed += OnJumpButtonPressed;
+            _eventBus.OnMouseUpdate += OnMouseUpdate;
         }
 
         private void RemoveListeners()
@@ -37,7 +43,15 @@ namespace AppFoxTest
             _eventBus.OnAttackButtonPressed -= OnAttackButtonPressed;
             _eventBus.OnAxisPressed -= OnAxisPressed;
             _eventBus.OnJumpButtonPressed -= OnJumpButtonPressed;
+            _eventBus.OnMouseUpdate -= OnMouseUpdate;
         }
+
+        private void OnMouseUpdate(Vector3 position)
+        {
+            //_movable.LookAt(new Vector3(position.x, transform.position.y, position.z));
+            _movable.LookAt(position);
+        }
+
         private void OnAttackButtonPressed()
         {
             _attackComponent.Attack();
