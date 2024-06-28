@@ -11,6 +11,9 @@ namespace AppFoxTest
         [SerializeField]
         private Movable _movable;
 
+        [SerializeField]
+        private AttackComponent _attackComponent;
+
         public void Inject(DIContainer container)
         {
             _eventBus = container.GetSingle<SceneEventBus>();
@@ -37,7 +40,7 @@ namespace AppFoxTest
         }
         private void OnAttackButtonPressed()
         {
-            Debug.Log("Attack!");
+            _attackComponent.Attack();
         }
 
         private void OnAxisPressed(Vector2 vector)
@@ -48,7 +51,7 @@ namespace AppFoxTest
 
         private void OnJumpButtonPressed()
         {
-            _movable.Move(Vector3.up * 100f);
+            _movable.Move(Vector3.up * 25000f);
         }
     }
 }
