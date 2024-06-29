@@ -7,12 +7,16 @@ namespace AppFoxTest
     {
         protected SceneEventBus _sceneEventBus;
 
-        [SerializeField]
         private IEntityView _entityView;
 
         public void Inject(DIContainer container)
         {
             _sceneEventBus = container.GetSingle<SceneEventBus>();
+        }
+
+        public void SetView(IEntityView view)
+        {
+            _entityView = view;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -22,8 +26,9 @@ namespace AppFoxTest
 
         protected virtual void EnterTrigger(Collider other)
         {
-            if (other.TryGetComponent(out AttackComponent attackComponent))
+            if (other.TryGetComponent(out HurtBoxComponent hurtBox))
             {
+                AttackComponent attackComponent = hurtBox.AttackComponent;
                 if(_entityView != attackComponent.Owner)
                     _entityView.GetAttack(attackComponent.AttackValue);
             }

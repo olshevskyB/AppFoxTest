@@ -7,6 +7,7 @@ namespace AppFoxTest
         private IPrefabLoader _prefabLoader;
         private SceneEventBus _sceneEventBus;
         private LevelsConfig _levelsConfig;
+        private IEntityFactory _entityFactory;
         private IUnloader _unloader;
 
         public void Inject(DIContainer container)
@@ -15,6 +16,7 @@ namespace AppFoxTest
             _sceneEventBus = container.GetSingle<SceneEventBus>();
             _levelsConfig = container.GetSingle<LevelsConfig>();
             _unloader = container.GetTransient<IUnloader>();
+            _entityFactory = container.GetSingle<IEntityFactory>();
         }
 
         public void Init()
@@ -41,21 +43,16 @@ namespace AppFoxTest
 
         private void SetupLevel(LevelView level)
         {
-            PlayerController playerController = _prefabLoader.Load(_levelsConfig.PlayerController, _unloader);
-            SetObjectToPoint(playerController.transform, level.transform, level.PlayerSpawnPoint);
-            _sceneEventBus.OnPlayerSpawn(playerController);
-        }
-
-        private void SetObjectToPoint(Transform objectTransform, Transform point, Transform parent)
-        {
-            objectTransform.transform.parent = parent;
-            objectTransform.transform.SetPositionAndRotation(point.position, point.rotation);
+            foreach (SpawnPoint spawnPoint in level.SpawnPoints)
+            {
+                _entityFactory.CreateEntityAtSpawnPoint(transform, spawnPoint, _unloader);
+            }
         }
 
         private void LoadLevel(LevelSO level)
         {
             _unloader.Unload();
-            _prefabLoader.Load(level, _unloader, OnLoaded, OnProgress);
+            _prefabLoader.LoadAsync(level, _unloader, OnLoaded, OnProgress);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace AppFoxTest
             _container = container;
         }
 
-        public void Load<T>(GameObjectSO<T> so, IUnloader unloader, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null) where T : UnityEngine.Object
+        public void LoadAsync<T>(GameObjectSO<T> so, IUnloader unloader, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null) where T : UnityEngine.Object
         {
             StartCoroutine(StartLoading(so, unloader, onLoaded, onProgress));
         }

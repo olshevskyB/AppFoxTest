@@ -9,13 +9,15 @@ namespace AppFoxTest
 
         public override void Init()
         {
-            _diContainer.AddNewObjectAndInit(new SceneEventBus());
-            _diContainer.AddNewObjectAndInit(_levelsConfig);
-            _diContainer.AddNewObjectAndInit(new Unloader());
-
-            _diContainer.AddNewObjectAndInit(CreateAsGameObject<PrefabLoader>());
-
             _diContainer.AddNewObjectAndInit(_cameraConfig);
+            _diContainer.AddNewObjectAndInit(_levelsConfig);
+
+            _diContainer.AddNewObjectAndInit(new SceneEventBus());     
+            
+            _diContainer.AddNewObjectAndInit(new Unloader());
+            _diContainer.AddNewObjectAndInit(CreateAsGameObject<PrefabLoader>());
+            _diContainer.AddNewObjectAndInit(new EntityFactory());
+         
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<CameraService>());
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<LevelService>());
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<InputService>());

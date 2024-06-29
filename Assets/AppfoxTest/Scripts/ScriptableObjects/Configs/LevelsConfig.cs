@@ -10,7 +10,5 @@ namespace AppFoxTest
         public List<LevelSO> Levels;
 
         public LevelSO FirstLevel => Levels.OrderByDescending(l=>l.Number).FirstOrDefault();
-
-        public PlayerController PlayerController; 
     }
 }

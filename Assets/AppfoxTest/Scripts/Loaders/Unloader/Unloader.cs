@@ -1,11 +1,38 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AppFoxTest
 {
-    public class Unloader : IUnloader
+    public class Unloader : IUnloader, IInjectable
     {
         List<UnityEngine.Object> objectForUnload = new List<UnityEngine.Object>();
+
+        private SceneEventBus _sceneEventBus;
+
+        public void Inject(DIContainer container)
+        {
+            _sceneEventBus = container.GetSingle<SceneEventBus>();
+            AddListeners();
+        }
+
+        private void AddListeners()
+        {
+            _sceneEventBus.OnEntityDead += OnEntityDead;
+        }     
+
+        private void RemoveListeners()
+        {
+            _sceneEventBus.OnEntityDead -= OnEntityDead;
+        }
+
+        private void OnEntityDead(IEntityView view)
+        {
+            if (view is UnityEngine.Object unityObject)
+            {
+                Unload(unityObject.GameObject());
+            }
+        }
 
         public void AddObject(UnityEngine.Object obj)
         {
@@ -14,18 +41,35 @@ namespace AppFoxTest
 
         public object Clone()
         {
-            return new Unloader()
+            var unloader = new Unloader()
             {
-                objectForUnload = new List<Object>()
+                objectForUnload = new List<Object>(),
+                _sceneEventBus = this._sceneEventBus,                
             };
+            unloader.AddListeners();
+            return unloader;
         }
-
+        
         public void Unload()
         {
             foreach (UnityEngine.Object mono in objectForUnload)
             {
                 GameObject.Destroy(mono);
             }
+        }
+
+        public void Unload(UnityEngine.Object obj)
+        {
+            if (objectForUnload.Contains(obj))
+            {
+                GameObject.Destroy(obj);
+                objectForUnload.Remove(obj);
+            }
+        }
+
+        public void Dispose()
+        {
+            RemoveListeners();
         }
     }
 }

@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
+    [RequireComponent(typeof(EntityTriggerHandler))]
     public class MonoEntityView : MonoBehaviour, IEntityView, IInjectable
     {
-        private IEntityPresentor _entityPresentor;
+        private IEntityPresenter _entityPresentor;
 
         [SerializeField]
         private MovableComponent _movableComponent;
@@ -12,15 +13,48 @@ namespace AppFoxTest
         [SerializeField]
         private AttackComponent _attackComponent;
 
+        [SerializeField]
+        private EntityTriggerHandler _entityTriggerHandler;
+
         private SceneEventBus _sceneEventBus;
 
-        private int id;
-        public int ID => id;
+        private int _id;
+
+        public Transform Transform => transform;
+
+        public int ID 
+        { 
+            get => _id; 
+            set => _id = value; 
+        }
 
         public void Inject(DIContainer container)
         {
             _sceneEventBus = container.GetSingle<SceneEventBus>();
             _attackComponent.Owner = this;
+            _entityTriggerHandler.SetView(this);
+        }
+
+        public void SetPresenter(IPresenter presenter)
+        {
+            if (presenter is IEntityPresenter entityPresenter)
+            {
+                _entityPresentor = entityPresenter;
+            }
+            else
+            {
+                Debug.LogError($"The presenter {presenter} is not an IEntityPresenter!");
+            }
+        }
+
+        public void SetPositionAndRotation(Vector3 position, Quaternion rotation)
+        {
+            transform.SetPositionAndRotation(position, rotation);
+        }
+
+        public void SetParent(Transform parent)
+        {
+            transform.parent = parent;
         }
 
         public void SetHP(float hp)
@@ -49,6 +83,7 @@ namespace AppFoxTest
         public virtual void Death()
         {
             _sceneEventBus.OnEntityDead?.Invoke(this);
-        }       
+        }
+
     }
 }

@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movableComponent: {fileID: 6005649913243003102}
   _attackComponent: {fileID: 3819065780130867842}
+  _entityTriggerHandler: {fileID: 3065334117661882814}
 --- !u!114 &6005649913243003102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +154,7 @@ GameObject:
   - component: {fileID: 6219518538949908264}
   - component: {fileID: 109245391032660006}
   - component: {fileID: 7099859798556730929}
+  - component: {fileID: 3682370037588298215}
   - component: {fileID: 8883930787159183128}
   m_Layer: 0
   m_Name: AttackCube
@@ -226,6 +228,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3682370037588298215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862111849812004827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a61d562cf85e6488b025abf2f6b38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackComponent: {fileID: 3819065780130867842}
 --- !u!65 &8883930787159183128
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -241,7 +256,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
