@@ -1,21 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace AppFoxTest
 {
-    public class IEntityPresentor : MonoBehaviour
+    public interface IEntityPresentor
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        public void GetAttack(float value);
+        public void UpdateAttackValue();
+        public void UpdateHP();
+        public void UpdateMovementSpeed();
     }
 }

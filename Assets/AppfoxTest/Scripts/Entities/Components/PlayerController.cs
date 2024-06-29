@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    [RequireComponent(typeof(Movable))]
+    [RequireComponent(typeof(MovableComponent))]
     [RequireComponent(typeof(PlayerTriggerHandler))]
     public class PlayerController : EntityController, IInjectable
     {
         private SceneEventBus _eventBus;
 
         [SerializeField]
-        private Movable _movable;
+        private MovableComponent _movable;
 
         [SerializeField]
         private AttackComponent _attackComponent;
@@ -48,7 +48,6 @@ namespace AppFoxTest
 
         private void OnMouseUpdate(Vector3 position)
         {
-            //_movable.LookAt(new Vector3(position.x, transform.position.y, position.z));
             _movable.LookAt(position);
         }
 

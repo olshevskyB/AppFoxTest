@@ -14,5 +14,7 @@ namespace AppFoxTest
         public Action OnJumpButtonPressed;
         public Action OnAttackButtonPressed;
         public Action<Vector3> OnMouseUpdate;
+
+        public Action<IEntityView> OnEntityDead;
     }
 }

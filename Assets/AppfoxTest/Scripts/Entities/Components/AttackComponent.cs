@@ -6,8 +6,19 @@ namespace AppFoxTest
     [RequireComponent(typeof(MonoTimer))]
     public abstract class AttackComponent : MonoBehaviour
     {
-        [SerializeField]
-        protected EntityController _owner;
+        protected IEntityView _owner;
+
+        public IEntityView Owner
+        {
+            get
+            {
+                return _owner;
+            }
+            set
+            {
+                _owner = value;
+            }
+        }
 
         [SerializeField]
         protected List<Collider> _hurtBoxes;
@@ -17,18 +28,34 @@ namespace AppFoxTest
 
         private ITimer _timer;
 
+        private float _attack;
+
+        public float AttackValue
+        {
+            get
+            {
+                return _attack;
+            }
+        }
+
         private void Awake()
         {
             _timer = GetComponent<MonoTimer>();
         }
 
+        public void UpdateAttackValue(float attack)
+        {
+            _attack = attack;
+        }
+
         public void Attack()
         {
-            if (!_timer[this])//Если таймер для этого объекта не запущен
+            //Если таймер для этого объекта не запущен
+            if (!_timer[this])
             {
                 StartAttack();
             }
-        }
+        }     
 
         protected virtual void OnStartAttack()
         {

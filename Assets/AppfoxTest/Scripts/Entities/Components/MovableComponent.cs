@@ -2,13 +2,20 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    public abstract class Movable : MonoBehaviour
+    public abstract class MovableComponent : MonoBehaviour
     {
+        protected float _movementSpeed;
+
         public abstract void LookAt(Vector3 position);
 
         public abstract void MoveByDirection(Vector3 direction);
 
         public abstract void Move(Vector3 movement);
+
+        public void UpdateMovementSpeed(float value)
+        {
+            _movementSpeed = value;
+        }
 
         public virtual void SetPosition(Vector3 position)
         {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    public class RigidbodyMovable : Movable
+    public class RigidbodyMovableComponent : MovableComponent
     {
         [SerializeField]
         private Rigidbody _rigidbody;

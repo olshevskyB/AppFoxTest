@@ -6,6 +6,7 @@ namespace AppFoxTest
     {
         protected override void EnterTrigger(Collider other)
         {
+            base.EnterTrigger(other);
             if (other.TryGetComponent(out NextLevelCube cube))
             {
                 _sceneEventBus.OnInvokeNextLevel?.Invoke(cube.LevelSO);
