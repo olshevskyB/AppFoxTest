@@ -23,5 +23,10 @@ namespace AppFoxTest
             position = new Vector3(position.x, transform.position.y, position.z);
             transform.LookAt(position, Vector3.up);
         }
+
+        public override void MoveByDestination(Vector3 destination)
+        {
+            transform.position = destination;
+        }
     }
 }

@@ -12,7 +12,9 @@ namespace AppFoxTest
 
         public abstract void Move(Vector3 movement);
 
-        public void UpdateMovementSpeed(float value)
+        public abstract void MoveByDestination(Vector3 destination);
+
+        public virtual void UpdateMovementSpeed(float value)
         {
             _movementSpeed = value;
         }
