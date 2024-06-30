@@ -15,4 +15,4 @@ MonoBehaviour:
   _hp: 50
   _baseAttack: 10
   _movementSpeed: 10
-  _entityView: {fileID: 1664275053203953604, guid: 72cfdbebc77b962459f0721efeb47bc2, type: 3}
+  _entityView: {fileID: 4997936801577085345, guid: 72cfdbebc77b962459f0721efeb47bc2, type: 3}

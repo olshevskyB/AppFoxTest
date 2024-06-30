@@ -16,7 +16,7 @@ namespace AppFoxTest
         [SerializeField]
         private EntityTriggerHandler _entityTriggerHandler;
 
-        private SceneEventBus _sceneEventBus;
+        protected SceneEventBus _sceneEventBus;
 
         private int _id;
 

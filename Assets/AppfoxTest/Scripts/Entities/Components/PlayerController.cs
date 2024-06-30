@@ -4,22 +4,8 @@ namespace AppFoxTest
 {
     [RequireComponent(typeof(MovableComponent))]
     [RequireComponent(typeof(PlayerTriggerHandler))]
-    public class PlayerController : EntityController, IInjectable
+    public class PlayerController : EntityController
     {
-        private SceneEventBus _eventBus;
-
-        [SerializeField]
-        private MovableComponent _movable;
-
-        [SerializeField]
-        private AttackComponent _attackComponent;
-
-        public void Inject(DIContainer container)
-        {
-            _eventBus = container.GetSingle<SceneEventBus>();
-            AddListeners();
-        }
-
         private void Update()
         {
             Debug.DrawLine(transform.position, transform.forward * 5f, Color.red);
@@ -30,7 +16,7 @@ namespace AppFoxTest
             RemoveListeners();
         }
 
-        private void AddListeners()
+        protected override sealed void AddListeners()
         {
             _eventBus.OnAttackButtonPressed += OnAttackButtonPressed;
             _eventBus.OnAxisPressed += OnAxisPressed;
@@ -38,7 +24,7 @@ namespace AppFoxTest
             _eventBus.OnMouseUpdate += OnMouseUpdate;
         }
 
-        private void RemoveListeners()
+        protected override sealed void RemoveListeners()
         {
             _eventBus.OnAttackButtonPressed -= OnAttackButtonPressed;
             _eventBus.OnAxisPressed -= OnAxisPressed;
@@ -48,12 +34,13 @@ namespace AppFoxTest
 
         private void OnMouseUpdate(Vector3 position)
         {
-            _movable.LookAt(position);
+            if(!_attackComponent.IsAttack)
+                _movable.LookAt(position);
         }
 
         private void OnAttackButtonPressed()
         {
-            _attackComponent.Attack();
+            Attack();
         }
 
         private void OnAxisPressed(Vector2 vector)

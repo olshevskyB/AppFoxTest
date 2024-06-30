@@ -38,7 +38,7 @@ namespace AppFoxTest
         {
             if (_target != null)
             {
-                transform.position = _target.position + Vector3.up * 10f;
+                transform.position = _target.position + Vector3.up * 15f;
             }            
         }
     }

@@ -27,10 +27,6 @@ namespace AppFoxTest
                 presenter.UpdateAllValues();
 
                 _sceneEvents.OnEntitySpawn?.Invoke(loadedEntity);            
-                if (spawnPoint.SpawnPointSO.IsPlayerSpawn)
-                {
-                    _sceneEvents.OnPlayerSpawn?.Invoke(loadedEntity);
-                }
                 return loadedEntity;
             }           
             return null;

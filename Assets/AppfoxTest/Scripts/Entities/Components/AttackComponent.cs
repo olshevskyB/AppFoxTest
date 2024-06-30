@@ -30,6 +30,8 @@ namespace AppFoxTest
 
         private float _attack;
 
+        public bool IsAttack => _timer[this];
+
         public float AttackValue
         {
             get
@@ -50,8 +52,7 @@ namespace AppFoxTest
 
         public void Attack()
         {
-            //Если таймер для этого объекта не запущен
-            if (!_timer[this])
+            if (!IsAttack)
             {
                 StartAttack();
             }

@@ -10,10 +10,5 @@ namespace AppFoxTest
         private List<EntitySO> _entitiesForSpawn;
 
         public IReadOnlyList<EntitySO> EntitiesForSpawn => _entitiesForSpawn;
-
-        [SerializeField]
-        private bool _isPlayerSpawner;
-
-        public bool IsPlayerSpawn => _isPlayerSpawner;     
     }
 }
