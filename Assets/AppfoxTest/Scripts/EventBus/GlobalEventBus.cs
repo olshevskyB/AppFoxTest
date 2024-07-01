@@ -6,5 +6,6 @@ namespace AppFoxTest
     {
         public Action<SceneSO> OnSceneLoaded;
         public Action<SceneSO, float> OnLoadProgress;
+        public Action<SceneEventBus> OnSceneEventBusInit;
     }
 }

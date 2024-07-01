@@ -13,9 +13,7 @@ namespace AppFoxTest
             _diContainer.AddNewObjectAndInit(_levelsConfig);
 
             _diContainer.AddNewObjectAndInit(new SceneEventBus());     
-            
-            _diContainer.AddNewObjectAndInit(new Unloader());
-            _diContainer.AddNewObjectAndInit(CreateAsGameObject<PrefabLoader>());
+                       
             _diContainer.AddNewObjectAndInit(new EntityFactory());
          
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<CameraService>());

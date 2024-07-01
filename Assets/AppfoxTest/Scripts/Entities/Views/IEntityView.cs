@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    public interface IEntityView
+    public interface IEntityView : IView
     {
         public int ID
         {
@@ -14,8 +14,6 @@ namespace AppFoxTest
         {
             get;
         }
-
-        public void SetPresenter(IPresenter presenter);
 
         public void SetPositionAndRotation(Vector3 position, Quaternion rotation);
 

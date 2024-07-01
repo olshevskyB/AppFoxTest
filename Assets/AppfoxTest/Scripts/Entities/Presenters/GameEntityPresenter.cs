@@ -1,21 +1,13 @@
 ﻿namespace AppFoxTest
 {
-    public class GameEntityPresenter : IEntityPresenter
+    public class GameEntityPresenter : AbstractPresenter<IEntityView, IEntityModel>
     {
-        private IEntityModel _entityModel;
-
-        private IEntityView _entityView;
-
-        public GameEntityPresenter(IEntityModel entityModel, IEntityView entityView)
+        public GameEntityPresenter(IEntityView view, IEntityModel model) : base(view, model)
         {
-            _entityView = entityView;
-            _entityView.SetPresenter(this);
 
-            _entityModel = entityModel;
-            _entityModel.AddPresenter(this);            
         }
 
-        public void UpdateAllValues()
+        public override void UpdateAllValues()
         {
             UpdateMovementSpeed();
             UpdateAttackValue();
@@ -24,22 +16,22 @@
 
         public void UpdateMovementSpeed()
         {
-            _entityView.SetMovementSpeed(_entityModel.CalculateMovementSpeed());
+            _view.SetMovementSpeed(_model.CalculateMovementSpeed());
         }
 
         public void UpdateAttackValue()
         {
-            _entityView.SetAttack(_entityModel.CalculateAttack());
+            _view.SetAttack(_model.CalculateAttack());
         }
 
         public void UpdateHP()
         {
-            _entityView.SetHP(_entityModel.HP);
+            _view.SetHP(_model.HP);
         }
 
         public void GetAttack(float value)
         {
-            _entityModel.HP -= value;
+            _model.HP -= value;
         }      
     }
 }

@@ -23,7 +23,7 @@ namespace AppFoxTest
                 loadedEntity.SetParent(parent.transform);
                 loadedEntity.SetPositionAndRotation(spawnPoint.transform.position, spawnPoint.transform.rotation);
 
-                IPresenter presenter = new GameEntityPresenter(entityModel, loadedEntity);
+                IPresenter presenter = new GameEntityPresenter(loadedEntity, entityModel);
                 presenter.UpdateAllValues();
 
                 _sceneEvents.OnEntitySpawn?.Invoke(loadedEntity);            

@@ -9,11 +9,24 @@ namespace AppFoxTest
         List<UnityEngine.Object> objectForUnload = new List<UnityEngine.Object>();
 
         private SceneEventBus _sceneEventBus;
+        private GlobalEventBus _globalEventBus;
 
         public void Inject(DIContainer container)
         {
-            _sceneEventBus = container.GetSingle<SceneEventBus>();
+            _globalEventBus = container.GetSingle<GlobalEventBus>();
+            WaitSceneEvenBusInitialization();
+        }
+        
+        private void WaitSceneEvenBusInitialization()
+        {
+            _globalEventBus.OnSceneEventBusInit += OnSceneEvenBusInit;
+        }
+
+        private void OnSceneEvenBusInit(SceneEventBus bus)
+        {
+            _sceneEventBus = bus;
             AddListeners();
+            _globalEventBus.OnSceneEventBusInit -= OnSceneEvenBusInit;
         }
 
         private void AddListeners()
@@ -24,6 +37,7 @@ namespace AppFoxTest
         private void RemoveListeners()
         {
             _sceneEventBus.OnEntityDead -= OnEntityDead;
+            
         }
 
         private void OnEntityDead(IEntityView view)
@@ -46,7 +60,12 @@ namespace AppFoxTest
                 objectForUnload = new List<Object>(),
                 _sceneEventBus = this._sceneEventBus,                
             };
-            unloader.AddListeners();
+            if(_sceneEventBus != null)
+                unloader.AddListeners();
+            else
+            {
+                WaitSceneEvenBusInitialization();
+            }
             return unloader;
         }
         
