@@ -5,7 +5,7 @@ namespace AppFoxTest
     [RequireComponent(typeof(EntityTriggerHandler))]
     public class MonoEntityView : MonoBehaviour, IEntityView, IInjectable
     {
-        private IEntityPresenter _entityPresentor;
+        private IEntityPresenter _entityPresenter;
 
         [SerializeField]
         private MovableComponent _movableComponent;
@@ -39,7 +39,7 @@ namespace AppFoxTest
         {
             if (presenter is IEntityPresenter entityPresenter)
             {
-                _entityPresentor = entityPresenter;
+                _entityPresenter = entityPresenter;
             }
             else
             {
@@ -77,7 +77,7 @@ namespace AppFoxTest
 
         public void GetAttack(float attack)
         {
-            _entityPresentor.GetAttack(attack);
+            _entityPresenter.GetAttack(attack);
         }
 
         public virtual void Death()

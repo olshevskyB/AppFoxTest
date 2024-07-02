@@ -8,29 +8,29 @@ namespace AppFoxTest
 {
     public class PrefabLoader : MonoBehaviour, IPrefabLoader, IInjectable
     {
-        private DIContainer _container;
+        private DIContainer _container;      
 
         public void Inject(DIContainer container)
         {
             _container = container;
         }
 
-        public void LoadAsync<T>(GameObjectSO<T> so, IUnloader unloader, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null) where T : UnityEngine.Object
+        public void LoadAsync<T>(GameObjectSO<T> so, IUnloader unloader, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null, Transform parent = null) where T : UnityEngine.Object
         {
-            StartCoroutine(StartLoading(so, unloader, onLoaded, onProgress));
+            StartCoroutine(StartLoading(so, unloader, onLoaded, onProgress, parent));
         }
 
-        public T Load<T>(T prefab, IUnloader unloader) where T : UnityEngine.Object
+        public T Load<T>(T prefab, IUnloader unloader, Transform parent = null) where T : UnityEngine.Object
         {
-            var result = Instantiate(prefab);
+            var result = Instantiate(prefab, parent);
             InjectObjects(result);
             unloader.AddObject(result.GameObject());
             return result;
         }
 
-        private IEnumerator StartLoading<T>(GameObjectSO<T> so, IUnloader unloader, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null) where T : UnityEngine.Object
+        private IEnumerator StartLoading<T>(GameObjectSO<T> so, IUnloader unloader, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null, Transform parent = null) where T : UnityEngine.Object
         {
-            var asyncLoad = InstantiateAsync(so.Prefab);
+            var asyncLoad = InstantiateAsync(so.Prefab, parent);
             while (!asyncLoad.isDone)
             {
                 onProgress?.Invoke(so, asyncLoad.progress);

@@ -25,11 +25,11 @@ namespace AppFoxTest
             {
                 Type type = screen.GetType();
                 _cachedViews[type] = screen;
-                OnLoadScreen(_cachedViews[type]);
+                OpenScreen(_cachedViews[type]);
             };
-            _uiFactory.CreateStartScreen(onLoad);
+            _uiFactory.CreateStartScreen(onLoad, transform);
         }
-        
+
         public void OpenScreen<T>(bool additive) where T : AbstractScreenView
         {
             Type screenType = typeof(T);
@@ -38,30 +38,42 @@ namespace AppFoxTest
                 Action<T> onLoad = (screen) =>
                 {
                     _cachedViews[screenType] = screen;
-                    if (additive)
-                    {
-                        OnLoadScreen(_cachedViews[screenType]);
-                    }
-                    else
-                    {
-                        OnLoadScreenAdditive(_cachedViews[screenType]);
-                    }
+                    OpenScreen(additive, screen);
                 };
                 _uiFactory.CreateScreenAsync(onLoad);
             }
+            else
+            {
+                AbstractScreenView screen = _cachedViews[screenType];
+                OpenScreen(additive, screen);
+            }
         }
-        private void OnLoadScreen(AbstractScreenView screenView)
+
+        private void OpenScreen(bool additive, AbstractScreenView screenView)
+        {
+            if (additive)
+            {
+                OpenScreenAdditive(screenView);
+            }
+            else
+            {
+                OpenScreen(screenView);
+            }
+        }
+
+        private void OpenScreen(AbstractScreenView screenView)
         {
             if (_currentScreen != null)
             {
                 _currentScreen.Close();
                 _additiveModeActiveScreens.ForEach(s => s.Close());
-                _additiveModeActiveScreens.Clear();
-                _currentScreen = screenView;
+                _additiveModeActiveScreens.Clear();              
             }
+            _currentScreen = screenView;
+            _currentScreen.Open();
         }
 
-        private void OnLoadScreenAdditive(AbstractScreenView screenView)
+        private void OpenScreenAdditive(AbstractScreenView screenView)
         {
             screenView.Open();
             _additiveModeActiveScreens.Add(screenView);

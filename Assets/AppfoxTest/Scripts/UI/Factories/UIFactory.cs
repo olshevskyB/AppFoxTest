@@ -24,29 +24,26 @@ namespace AppFoxTest
             LoadScreen(callback, prefab);
         }     
 
-        public void CreateStartScreen(Action<AbstractScreenView> callback)
+        public void CreateStartScreen(Action<AbstractScreenView> callback, Transform parent)
         {
+            _instantiatedCanvas = _loader.Load(_screensConfig.CanvasPrefab, _unloader);
+            _instantiatedCanvas.transform.parent = parent;
+
             ScreenSO prefab = _screensConfig.StartScreen;
             LoadScreen(callback, prefab);
         }
 
         private void LoadScreen<T>(Action<T> callback, ScreenSO prefab) where T : AbstractScreenView
         {
-            if (_instantiatedCanvas == null)
-            {
-                _instantiatedCanvas = _loader.Load(_screensConfig.CanvasPrefab, _unloader);
-            }
-
             _loader.LoadAsync(prefab, _unloader, (screen) =>
             {
                 T newScreen = OnScreenLoaded((T)screen);
                 callback.Invoke(newScreen);
-            });
+            }, null, _instantiatedCanvas.transform);
         }
 
         private T OnScreenLoaded<T>(T screen) where T : AbstractScreenView
         {
-            screen.transform.parent = _instantiatedCanvas.transform;
             return screen;
         }
     }

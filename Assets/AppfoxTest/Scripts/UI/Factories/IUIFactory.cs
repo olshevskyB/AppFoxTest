@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace AppFoxTest
 {
@@ -6,6 +7,6 @@ namespace AppFoxTest
     {
         public void CreateScreenAsync<T>(Action<T> callback) where T : AbstractScreenView;
 
-        public void CreateStartScreen(Action<AbstractScreenView> callback);
+        public void CreateStartScreen(Action<AbstractScreenView> callback, Transform parent);    
     }
 }

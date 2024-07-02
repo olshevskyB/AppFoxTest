@@ -14,6 +14,7 @@ namespace AppFoxTest
 
         private IEnumerator LoadSceneAsync(SceneSO sceneSO, Action<SceneSO> onLoad, Action<SceneSO, float> onProgress)
         {
+            yield return new WaitForSeconds(1f);
             var asyncLoad = SceneManager.LoadSceneAsync(sceneSO.Index, sceneSO.SceneMode);
             while (!asyncLoad.isDone)
             {

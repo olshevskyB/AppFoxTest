@@ -10,7 +10,7 @@ namespace AppFoxTest
 
         public void Inject(DIContainer container)
         {
-            _diContainer = new DIContainer(container);
+            _diContainer = container;
         }
     }
 }

@@ -7,29 +7,7 @@ namespace AppFoxTest
 {
     public class DIContainer
     {
-        private readonly List<object> _installedObjectsInContext = new List<object>();
-
-        private List<object> _installedObjects
-        {
-            get
-            {
-                if (_wrappedDIContainer == null)
-                    return _installedObjectsInContext;
-                return _installedObjectsInContext.Union(_installedObjects).ToList();
-            }
-        }
-
-        private DIContainer _wrappedDIContainer;
-
-        public DIContainer()
-        {
-
-        }
-
-        public DIContainer(DIContainer diContainer)
-        {
-            _wrappedDIContainer = diContainer;
-        }
+        private readonly List<object> _installedObjects = new List<object>();
 
         public void AddNewObjectAndInit(object o)
         {
@@ -41,12 +19,12 @@ namespace AppFoxTest
             {
                 initializable.Init();
             }
-            _installedObjectsInContext.Add(o);
+            _installedObjects.Add(o);
         }
 
         public T GetSingle<T>()
         {
-            T installed = _installedObjectsInContext.OfType<T>().FirstOrDefault(o => o is T);
+            T installed = _installedObjects.OfType<T>().FirstOrDefault(o => o is T);
             if (installed == null)
             {
                 Debug.LogError($"Unable to resolve {typeof(T)}!");
@@ -56,7 +34,7 @@ namespace AppFoxTest
 
         public T GetTransient<T>() where T: ICloneable
         {
-            T installed = _installedObjectsInContext.OfType<T>().FirstOrDefault(o => o is T);
+            T installed = _installedObjects.OfType<T>().FirstOrDefault(o => o is T);
             if (installed == null)
             {
                 Debug.LogError($"Unable to resolve {typeof(T)}!");
@@ -66,7 +44,7 @@ namespace AppFoxTest
 
         public IEnumerable<T> GetCollection<T>()
         {
-            IEnumerable<T> installed = _installedObjectsInContext.OfType<T>();
+            IEnumerable<T> installed = _installedObjects.OfType<T>();
             if (installed.Count() <= 0)
             {
                 Debug.LogError($"Unable to resolve {typeof(T)}!");

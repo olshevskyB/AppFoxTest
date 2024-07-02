@@ -1,6 +1,6 @@
 ﻿namespace AppFoxTest
 {
-    public class GameEntityPresenter : AbstractPresenter<IEntityView, IEntityModel>
+    public class GameEntityPresenter : AbstractPresenter<IEntityView, IEntityModel>, IEntityPresenter
     {
         public GameEntityPresenter(IEntityView view, IEntityModel model) : base(view, model)
         {
