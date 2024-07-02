@@ -3,7 +3,7 @@ using UnityEngine;
 namespace AppFoxTest
 {
     [RequireComponent(typeof(EntityTriggerHandler))]
-    public class MonoEntityView : AbstractMonoView, IEntityView
+    public class MonoEntityView : AbstractMonoView, IControlEntityView
     {
         private IEntityPresenter _entityPresenter;
 
@@ -19,6 +19,8 @@ namespace AppFoxTest
         protected SceneEventBus _sceneEventBus;
 
         private int _id;
+
+        private EntitySO _entitySO;
 
         public Transform Transform => transform;
 
@@ -88,5 +90,9 @@ namespace AppFoxTest
             _globalEventBus.OnUnloadEntity?.Invoke(this);
         }
 
+        public void SetConfig(EntitySO so)
+        {
+            _entitySO = so;
+        }
     }
 }

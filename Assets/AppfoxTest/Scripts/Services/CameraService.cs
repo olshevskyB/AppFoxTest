@@ -39,7 +39,7 @@ namespace AppFoxTest
         {
             _sceneEventBus.OnPlayerSpawn -= OnPlayerSpawn;
         }
-        private void OnPlayerSpawn(IEntityView controller)
+        private void OnPlayerSpawn(IControlEntityView controller)
         {
             _cameraController.SetTarget(controller.Transform);
         }

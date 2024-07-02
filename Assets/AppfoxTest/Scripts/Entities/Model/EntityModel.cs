@@ -28,7 +28,16 @@ namespace AppFoxTest
             }
         }
 
+        public EntitySO Config 
+        { 
+            get;
+            private set;
+        }
+
+        public bool IsPlayer => _isPlayer;
+
         private int _id;
+        private bool _isPlayer;
 
         public EntityModel(EntitySO so, int id)
         {
@@ -37,6 +46,8 @@ namespace AppFoxTest
             _baseSpeed = _entitySO.MovementSpeed;
             _hp = _entitySO.HP;
             _id = id;
+            _isPlayer = so.EntityPrefab is PlayerMonoEntityView;
+            Config = so;
         }
 
         public float CalculateAttack()
@@ -62,11 +73,16 @@ namespace AppFoxTest
             {
                 new GameEntityPresenter(entityView, this);
             }
+            if ((_isPlayer && view is PlayerHUDScreenView hud))
+            {
+                new GameEntityPresenter(hud, this);
+            }
+            
         }
 
         public void OnUnloadView(IView view)
         {
-            if (view is IEntityView entityView && entityView.ID == _id)
+            if ((view is IEntityView entityView && entityView.ID == _id))
             {
                 _entityPresenters.Clear();
             }
@@ -76,7 +92,5 @@ namespace AppFoxTest
         {
             return $"Entity ID: \n {_id} HP: {_hp} \n BaseAttack: {_baseAttack} \n BaseSpeed: {_baseSpeed} \n____________";
         }
-
-        
     }
 }

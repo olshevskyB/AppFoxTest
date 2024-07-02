@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace AppFoxTest
@@ -8,6 +9,8 @@ namespace AppFoxTest
         private GlobalEventBus _eventBus;
 
         private List<IModel> _models = new List<IModel>();
+
+        public IReadOnlyList<IModel> Models => _models;
 
         public void Inject(DIContainer container)
         {
@@ -19,6 +22,11 @@ namespace AppFoxTest
         public void Init()
         {
             _models.Add(new MainMenuModel());
+        }
+
+        public T GetModel<T>() where T : IModel
+        {
+            return _models.OfType<T>().FirstOrDefault();
         }
 
         public void AddModel(IModel model)

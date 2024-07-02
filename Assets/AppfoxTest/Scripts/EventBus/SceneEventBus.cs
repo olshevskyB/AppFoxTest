@@ -14,8 +14,8 @@ namespace AppFoxTest
         public Action OnAttackButtonPressed;
         public Action<Vector3> OnMouseUpdate;
 
-        public Action<IEntityView> OnEntitySpawn;
-        public Action<IEntityView> OnEntityDead;
-        public Action<IEntityView> OnPlayerSpawn;
+        public Action<IControlEntityView> OnEntitySpawn;
+        public Action<IControlEntityView> OnEntityDead;
+        public Action<IControlEntityView> OnPlayerSpawn;
     }
 }

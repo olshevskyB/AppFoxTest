@@ -24,7 +24,7 @@ namespace AppFoxTest
                 EntityModel entityModel = new EntityModel(entity, _iteration);
                 _globalEventBus.OnCreateNewModel(entityModel);
 
-                IEntityView loadedEntity = _prefabLoader.Load(entity.EntityPrefab, unloader);
+                IControlEntityView loadedEntity = _prefabLoader.Load(entity.EntityPrefab, unloader);
                 loadedEntity.ID = _iteration;
                 loadedEntity.SetParent(parent.transform);
                 loadedEntity.SetPositionAndRotation(spawnPoint.transform.position, spawnPoint.transform.rotation);

@@ -9,6 +9,7 @@
 
         public override void UpdateAllValues()
         {
+            UpdateConfig();
             UpdateMovementSpeed();
             UpdateAttackValue();
             UpdateHP();
@@ -22,6 +23,11 @@
         public void UpdateAttackValue()
         {
             _view.SetAttack(_model.CalculateAttack());
+        }
+
+        public void UpdateConfig()
+        {
+            _view.SetConfig(_model.Config);
         }
 
         public void UpdateHP()

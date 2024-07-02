@@ -54,8 +54,8 @@ namespace AppFoxTest
         private void Update()
         {
             float distance = 0f;
-            IEntityView nearEnemy = null;
-            foreach (IEntityView enemy in _enemies)
+            IControlEntityView nearEnemy = null;
+            foreach (IControlEntityView enemy in _enemies)
             {
                 float currentDistance = (enemy.Transform.position - transform.position).sqrMagnitude;
                 if (currentDistance <= _radiusDetectSqr)
