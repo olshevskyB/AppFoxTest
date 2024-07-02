@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,10 @@ namespace AppFoxTest
 
         public bool IsAttack => _timer[this];
 
+        private int _attackId;
+
+        public int AttackId => _attackId;
+
         public float AttackValue
         {
             get
@@ -60,6 +65,7 @@ namespace AppFoxTest
 
         protected virtual void OnStartAttack()
         {
+            _attackId = Time.frameCount;
             EnableHurtBox();
         }
 

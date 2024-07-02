@@ -17,7 +17,8 @@ namespace AppFoxTest
         }
         private float delayLog; 
         public void Update()
-        {           
+        {
+            return;
             if (delayLog <= 0f)
             {
                 foreach (IModel model in _models)

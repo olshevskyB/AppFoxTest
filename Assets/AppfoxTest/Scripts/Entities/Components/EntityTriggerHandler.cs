@@ -9,6 +9,8 @@ namespace AppFoxTest
 
         private IEntityView _entityView;
 
+        private int _lastAttackId;
+
         public void Inject(DIContainer container)
         {
             _sceneEventBus = container.GetSingle<SceneEventBus>();
@@ -27,10 +29,15 @@ namespace AppFoxTest
         protected virtual void EnterTrigger(Collider other)
         {
             if (other.TryGetComponent(out HurtBoxComponent hurtBox))
-            {
+            {             
                 AttackComponent attackComponent = hurtBox.AttackComponent;
+                if (_lastAttackId == attackComponent.AttackId)
+                {
+                    return;
+                }
                 if(_entityView != attackComponent.Owner)
                     _entityView.GetAttack(attackComponent.AttackValue);
+                _lastAttackId = attackComponent.AttackId;
             }
         }      
     }
