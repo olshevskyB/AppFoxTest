@@ -29,12 +29,18 @@ namespace AppFoxTest
             _instantiatedCanvas = _loader.Load(_screensConfig.CanvasPrefab, _unloader);
             _instantiatedCanvas.transform.parent = parent;
 
-            ScreenSO prefab = _screensConfig.StartScreen;
-            LoadScreen(callback, prefab);
+            LoadScreen(callback, _screensConfig.StartScreen);
         }
 
         private void LoadScreen<T>(Action<T> callback, ScreenSO prefab) where T : AbstractScreenView
         {
+            AbstractScreenView screenView = _loader.Load(prefab.Prefab, _unloader, _instantiatedCanvas.transform);
+            callback.Invoke(screenView as T);
+        }
+
+        private void LoadScreenAsync<T>(Action<T> callback, ScreenSO prefab) where T : AbstractScreenView
+        {
+            //InstantiateAsync ломает RectTransform https://forum.unity.com/threads/object-instantiateasync-not-working-with-ui-prefabs.1551740/
             _loader.LoadAsync(prefab, _unloader, (screen) =>
             {
                 T newScreen = OnScreenLoaded((T)screen);
