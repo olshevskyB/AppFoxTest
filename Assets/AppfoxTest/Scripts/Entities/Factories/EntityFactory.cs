@@ -28,6 +28,7 @@ namespace AppFoxTest
                 loadedEntity.ID = _iteration;
                 loadedEntity.SetParent(parent.transform);
                 loadedEntity.SetPositionAndRotation(spawnPoint.transform.position, spawnPoint.transform.rotation);
+                loadedEntity.StartPosition = spawnPoint.transform;
                 loadedEntity.Init();
 
                 _sceneEvents.OnEntitySpawn?.Invoke(loadedEntity);

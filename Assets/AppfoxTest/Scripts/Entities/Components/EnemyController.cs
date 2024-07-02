@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace AppFoxTest
@@ -16,6 +14,16 @@ namespace AppFoxTest
         [SerializeField]
         private float _radiusAttack;
         private float _radiusAttackSqr => _radiusAttack * _radiusAttack;
+
+        private Transform _startPosition;
+
+        private void Start()
+        {
+            if (TryGetComponent(out IHasStartPosition startPosition))
+            {
+                _startPosition = startPosition.StartPosition;
+            }
+        }
 
         private void OnDrawGizmos()
         {
@@ -37,7 +45,7 @@ namespace AppFoxTest
             _eventBus.OnEntityDead -= OnEntityDead;
         }
 
-        
+
         private void OnPlayerSpawn(IEntityView view)
         {
             _enemies.Add(view);
@@ -68,7 +76,7 @@ namespace AppFoxTest
 
             if (nearEnemy == null)
             {
-                _movable.MoveByDestination(transform.position);
+                _movable.MoveByDestination(_startPosition.position);
                 return;
             }
 

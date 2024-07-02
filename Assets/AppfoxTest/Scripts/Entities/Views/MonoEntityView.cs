@@ -29,6 +29,11 @@ namespace AppFoxTest
             get => _id; 
             set => _id = value; 
         }
+        public Transform StartPosition 
+        { 
+            get;
+            set ; 
+        }
 
         public override void Inject(DIContainer container)
         {

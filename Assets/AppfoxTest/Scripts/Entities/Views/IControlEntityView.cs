@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    public interface IControlEntityView : IEntityView
+    public interface IControlEntityView : IEntityView, IHasStartPosition
     {
         public Transform Transform
         {
