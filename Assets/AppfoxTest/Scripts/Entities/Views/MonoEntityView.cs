@@ -32,6 +32,7 @@ namespace AppFoxTest
         {
             base.Inject(container);
             _sceneEventBus = container.GetSingle<SceneEventBus>();
+            _globalEventBus = container.GetSingle<GlobalEventBus>();
             _attackComponent.Owner = this;
             _entityTriggerHandler.SetView(this);
         }
@@ -78,13 +79,13 @@ namespace AppFoxTest
 
         public void GetAttack(float attack)
         {
-            Debug.Log("Attacked " + ID);
             _entityPresenter.GetAttack(attack);
         }
 
         public virtual void Death()
         {
             _sceneEventBus.OnEntityDead?.Invoke(this);
+            _globalEventBus.OnUnloadEntity?.Invoke(this);
         }
 
     }

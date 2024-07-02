@@ -15,12 +15,12 @@ namespace AppFoxTest
         public float HP
         {
             get
-            {
-                Debug.Log("Attacked model " + _id);
+            {             
                 return _hp;
             }
             set
             {
+                Debug.Log($"Attacked model {_id} Current HP {_hp} New Value {value}");
                 if (value == HP)
                     return;               
                 _hp = value;
@@ -62,6 +62,11 @@ namespace AppFoxTest
             {
                 new GameEntityPresenter(entityView, this);
             }
+        }
+
+        public string GetLogText()
+        {
+            return $"Entity ID: \n {_id} HP: {_hp} \n BaseAttack: {_baseAttack} \n BaseSpeed: {_baseSpeed} \n____________";
         }
     }
 }

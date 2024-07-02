@@ -8,39 +8,26 @@ namespace AppFoxTest
     {
         List<UnityEngine.Object> objectForUnload = new List<UnityEngine.Object>();
 
-        private SceneEventBus _sceneEventBus;
         private GlobalEventBus _globalEventBus;
 
         public void Inject(DIContainer container)
         {
             _globalEventBus = container.GetSingle<GlobalEventBus>();
-            WaitSceneEvenBusInitialization();
-        }
-        
-        private void WaitSceneEvenBusInitialization()
-        {
-            _globalEventBus.OnSceneEventBusInit += OnSceneEvenBusInit;
-        }
-
-        private void OnSceneEvenBusInit(SceneEventBus bus)
-        {
-            _sceneEventBus = bus;
             AddListeners();
-            _globalEventBus.OnSceneEventBusInit -= OnSceneEvenBusInit;
         }
 
         private void AddListeners()
         {
-            _sceneEventBus.OnEntityDead += OnEntityDead;
-        }     
+            _globalEventBus.OnUnloadEntity += OnUnloadEntity;
+        }
 
         private void RemoveListeners()
         {
-            _sceneEventBus.OnEntityDead -= OnEntityDead;
-            
+            _globalEventBus.OnUnloadEntity -= OnUnloadEntity;
+
         }
 
-        private void OnEntityDead(IEntityView view)
+        private void OnUnloadEntity(IEntityView view)
         {
             if (view is UnityEngine.Object unityObject)
             {
@@ -58,17 +45,12 @@ namespace AppFoxTest
             var unloader = new Unloader()
             {
                 objectForUnload = new List<Object>(),
-                _sceneEventBus = this._sceneEventBus,                
+                _globalEventBus = this._globalEventBus,
             };
-            if(_sceneEventBus != null)
-                unloader.AddListeners();
-            else
-            {
-                WaitSceneEvenBusInitialization();
-            }
+            unloader.AddListeners();
             return unloader;
         }
-        
+
         public void Unload()
         {
             foreach (UnityEngine.Object mono in objectForUnload)

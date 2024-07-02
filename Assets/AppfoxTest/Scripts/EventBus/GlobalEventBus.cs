@@ -13,5 +13,6 @@ namespace AppFoxTest
 
         public Action<IView> OnCreateView;
         public Action<IModel> OnCreateNewModel;
+        public Action<IEntityView> OnUnloadEntity;
     }
 }

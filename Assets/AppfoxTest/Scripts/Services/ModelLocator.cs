@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace AppFoxTest
 {
-    public class ModelLocator : IInjectable, IInitializable
+    public class ModelLocator : MonoBehaviour, IInjectable, IInitializable
     {
         private GlobalEventBus _eventBus;
 
@@ -13,6 +14,22 @@ namespace AppFoxTest
             _eventBus = container.GetSingle<GlobalEventBus>();
             _eventBus.OnCreateView += OnCreateNewView;
             _eventBus.OnCreateNewModel += OnCreateNewModel;
+        }
+        private float delayLog; 
+        public void Update()
+        {           
+            if (delayLog <= 0f)
+            {
+                foreach (IModel model in _models)
+                {
+                    Debug.Log(model.GetLogText());
+                }
+                delayLog = 1f;
+            }
+            else
+            {
+                delayLog -= Time.deltaTime;
+            }           
         }
 
         public void Init()

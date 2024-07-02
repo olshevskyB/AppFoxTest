@@ -9,6 +9,11 @@ namespace AppFoxTest
             _presenter = presenter;
         }
 
+        public string GetLogText()
+        {
+            return nameof(MainMenuModel);
+        }
+
         public void TrySubscribeView(IView view)
         {
             if (view is MainMenuScreenView mainMenuScreenView)
