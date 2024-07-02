@@ -1,8 +1,10 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace AppFoxTest
 {
-    public class StartScreenView : AbstractScreenView
+    public class GameScreenView : AbstractScreenView
     {
         public override void Inject(DIContainer container)
         {
@@ -17,18 +19,14 @@ namespace AppFoxTest
 
         private void AddListener()
         {
-            _globalEventBus.OnSceneLoaded += OnSceneLoaded;
-        }
-        
-        private void RemoveListener()
-        {
-            _globalEventBus.OnSceneLoaded -= OnSceneLoaded;
-        }
-        private void OnSceneLoaded(SceneSO sO)
-        {
-            _uiService.OpenScreen<MainMenuScreenView>();
+            
         }
 
+        private void RemoveListener()
+        {
+            
+        }
+ 
         public override void SetPresenter(IPresenter presenter)
         {
 

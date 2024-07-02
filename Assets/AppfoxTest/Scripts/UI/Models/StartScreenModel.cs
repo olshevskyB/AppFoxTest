@@ -11,7 +11,7 @@
 
         public string GetLogText()
         {
-            return nameof(MainMenuModel);
+            return nameof(StartScreenModel);
         }
 
         public void OnAddNewView(IView view)

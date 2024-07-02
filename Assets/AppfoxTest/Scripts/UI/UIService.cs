@@ -30,7 +30,7 @@ namespace AppFoxTest
             _uiFactory.CreateStartScreen(onLoad, transform);
         }
 
-        public void OpenScreen<T>(bool additive) where T : AbstractScreenView
+        public void OpenScreen<T>(bool additive = false) where T : AbstractScreenView
         {
             Type screenType = typeof(T);
             if (!_cachedViews.ContainsKey(screenType))
