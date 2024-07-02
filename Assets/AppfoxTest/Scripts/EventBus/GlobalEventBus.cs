@@ -7,5 +7,11 @@ namespace AppFoxTest
         public Action<SceneSO> OnSceneLoaded;
         public Action<SceneSO, float> OnLoadProgress;
         public Action<SceneEventBus> OnSceneEventBusInit;
+
+        public Action OnStartLoading;
+        public Action OnStartGame;
+
+        public Action<IView> OnCreateView;
+        public Action<IModel> OnCreateNewModel;
     }
 }

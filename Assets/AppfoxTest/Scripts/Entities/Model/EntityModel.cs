@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace AppFoxTest
 {
@@ -15,6 +16,7 @@ namespace AppFoxTest
         {
             get
             {
+                Debug.Log("Attacked model " + _id);
                 return _hp;
             }
             set
@@ -26,12 +28,15 @@ namespace AppFoxTest
             }
         }
 
-        public EntityModel(EntitySO so)
+        private int _id;
+
+        public EntityModel(EntitySO so, int id)
         {
             _entitySO = so;
             _baseAttack = _entitySO.BaseAttack;
             _baseSpeed = _entitySO.MovementSpeed;
             _hp = _entitySO.HP;
+            _id = id;
         }
 
         public float CalculateAttack()
@@ -48,6 +53,14 @@ namespace AppFoxTest
             if (presenter is IEntityPresenter entityPresenter)
             {
                 _entityPresentors.Add(entityPresenter);
+            }
+        }
+
+        public void TrySubscribeView(IView view)
+        {
+            if (view is IEntityView entityView && entityView.ID == _id)
+            {
+                new GameEntityPresenter(entityView, this);
             }
         }
     }

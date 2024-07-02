@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    public interface IEntityView : IView
+    public interface IEntityView : IView, IInitializable
     {
         public int ID
         {

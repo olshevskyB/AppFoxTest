@@ -12,6 +12,8 @@ namespace AppFoxTest
 
             _model = model;
             _model.AddPresenter(this);
+
+            UpdateAllValues();
         }
 
         public abstract void UpdateAllValues();

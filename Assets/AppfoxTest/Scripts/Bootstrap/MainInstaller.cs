@@ -14,8 +14,11 @@ namespace AppFoxTest
             _diContainer.AddNewObjectAndInit(_scenesConfig);
             _diContainer.AddNewObjectAndInit(_screensConfig);
 
+            _diContainer.AddNewObjectAndInit(new ModelLocator());
+
             _diContainer.AddNewObjectAndInit(new Unloader());
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<PrefabLoader>());
+
             _diContainer.AddNewObjectAndInit(new UIFactory());
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<UIService>());
 

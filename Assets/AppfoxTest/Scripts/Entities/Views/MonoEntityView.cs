@@ -3,7 +3,7 @@ using UnityEngine;
 namespace AppFoxTest
 {
     [RequireComponent(typeof(EntityTriggerHandler))]
-    public class MonoEntityView : MonoBehaviour, IEntityView, IInjectable
+    public class MonoEntityView : AbstractMonoView, IEntityView
     {
         private IEntityPresenter _entityPresenter;
 
@@ -28,14 +28,15 @@ namespace AppFoxTest
             set => _id = value; 
         }
 
-        public void Inject(DIContainer container)
+        public override void Inject(DIContainer container)
         {
+            base.Inject(container);
             _sceneEventBus = container.GetSingle<SceneEventBus>();
             _attackComponent.Owner = this;
             _entityTriggerHandler.SetView(this);
         }
 
-        public void SetPresenter(IPresenter presenter)
+        public override void SetPresenter(IPresenter presenter)
         {
             if (presenter is IEntityPresenter entityPresenter)
             {
@@ -77,6 +78,7 @@ namespace AppFoxTest
 
         public void GetAttack(float attack)
         {
+            Debug.Log("Attacked " + ID);
             _entityPresenter.GetAttack(attack);
         }
 

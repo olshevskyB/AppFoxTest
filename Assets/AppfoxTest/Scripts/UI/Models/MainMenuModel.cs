@@ -8,5 +8,13 @@ namespace AppFoxTest
         {
             _presenter = presenter;
         }
+
+        public void TrySubscribeView(IView view)
+        {
+            if (view is MainMenuScreenView mainMenuScreenView)
+            {
+                new MainMenuPresenter(mainMenuScreenView, this);
+            }
+        }
     }
 }

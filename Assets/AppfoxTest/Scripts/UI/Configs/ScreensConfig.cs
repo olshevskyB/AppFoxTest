@@ -20,6 +20,10 @@ namespace AppFoxTest
         private ScreenSO _startScreen;
         public ScreenSO StartScreen => _startScreen;
 
+        [SerializeField]
+        private ScreenSO _loadingScreen;
+        public ScreenSO LoadingScreen => _loadingScreen;
+
         public ScreenSO this[Type type]
         {
             get
