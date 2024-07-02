@@ -15,4 +15,5 @@ MonoBehaviour:
   _viewPrefabs:
   - {fileID: 11400000, guid: da3c2dff4308d0a4fb1a2fd00d64b416, type: 2}
   _canvasPrefab: {fileID: 3112925433011953527, guid: c1fec3c44cb24ef4e8c007f60bf9a728, type: 3}
-  _startScreen: {fileID: 11400000, guid: da3c2dff4308d0a4fb1a2fd00d64b416, type: 2}
+  _startScreen: {fileID: 11400000, guid: 1eb6abefa9d3a4d45abbad5283aaa6f5, type: 2}
+  _loadingScreen: {fileID: 11400000, guid: 1eb6abefa9d3a4d45abbad5283aaa6f5, type: 2}

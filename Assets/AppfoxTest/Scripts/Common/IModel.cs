@@ -4,7 +4,9 @@ namespace AppFoxTest
     {
         public void AddPresenter(IPresenter presenter);
 
-        public void TrySubscribeView(IView view);
+        public void OnAddNewView(IView view);
+
+        public void OnUnloadView(IView view);
 
         public string GetLogText();
     }

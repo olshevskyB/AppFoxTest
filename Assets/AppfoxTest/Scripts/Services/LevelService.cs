@@ -6,6 +6,7 @@ namespace AppFoxTest
     {
         private IPrefabLoader _prefabLoader;
         private SceneEventBus _sceneEventBus;
+        private GlobalEventBus _globalEventBus;
         private LevelsConfig _levelsConfig;
         private IEntityFactory _entityFactory;
         private IUnloader _unloader;
@@ -14,20 +15,37 @@ namespace AppFoxTest
         {
             _prefabLoader = container.GetSingle<IPrefabLoader>();
             _sceneEventBus = container.GetSingle<SceneEventBus>();
+            _globalEventBus = container.GetSingle<GlobalEventBus>();
             _levelsConfig = container.GetSingle<LevelsConfig>();
             _unloader = container.GetTransient<IUnloader>();
             _entityFactory = container.GetSingle<IEntityFactory>();
-        }
+        }   
 
         public void Init()
         {
-            _sceneEventBus.OnInvokeNextLevel += LoadLevel;
-            LoadLevel(_levelsConfig.FirstLevel);
+            AddListeners();
         }
 
-        private void OnDestroy()
+        public void OnDestroy()
+        {
+            RemoveListeners();
+        }
+
+        private void AddListeners()
+        {
+            _sceneEventBus.OnInvokeNextLevel += LoadLevel;
+            _globalEventBus.OnInvokeStartGame += OnInvokeStartGame;
+        }
+
+        private void RemoveListeners()
         {
             _sceneEventBus.OnInvokeNextLevel -= LoadLevel;
+            _globalEventBus.OnInvokeStartGame -= OnInvokeStartGame;
+        }
+
+        private void OnInvokeStartGame()
+        {
+            LoadLevel(_levelsConfig.FirstLevel);
         }
 
         private void OnProgress(GameObjectSO<LevelView> so, float progress)

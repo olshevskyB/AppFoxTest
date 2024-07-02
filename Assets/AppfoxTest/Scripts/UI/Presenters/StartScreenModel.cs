@@ -1,6 +1,6 @@
-namespace AppFoxTest
+﻿namespace AppFoxTest
 {
-    public class MainMenuModel : IModel
+    public class StartScreenModel : IModel
     {
         private IPresenter _presenter;
 
@@ -16,15 +16,15 @@ namespace AppFoxTest
 
         public void OnAddNewView(IView view)
         {
-            if (view is MainMenuScreenView mainMenuScreenView)
+            if (view is StartScreenView startScreen)
             {
-                new MainMenuPresenter(mainMenuScreenView, this);
+                new StartScreenPresenter(startScreen, this);
             }
         }
 
         public void OnUnloadView(IView view)
         {
-            if (view is MainMenuScreenView mainMenuScreenView)
+            if (view is StartScreenView screenPresenter)
             {
                 _presenter = null;
             }

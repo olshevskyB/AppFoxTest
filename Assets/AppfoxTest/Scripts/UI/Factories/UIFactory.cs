@@ -27,7 +27,7 @@ namespace AppFoxTest
         public void CreateStartScreen(Action<AbstractScreenView> callback, Transform parent)
         {
             _instantiatedCanvas = _loader.Load(_screensConfig.CanvasPrefab, _unloader);
-            _instantiatedCanvas.transform.parent = parent;
+            _instantiatedCanvas.transform.SetParent(parent);
 
             LoadScreen(callback, _screensConfig.StartScreen);
         }

@@ -15,23 +15,6 @@ namespace AppFoxTest
             _eventBus.OnCreateView += OnCreateNewView;
             _eventBus.OnCreateNewModel += OnCreateNewModel;
         }
-        private float delayLog; 
-        public void Update()
-        {
-            return;
-            if (delayLog <= 0f)
-            {
-                foreach (IModel model in _models)
-                {
-                    Debug.Log(model.GetLogText());
-                }
-                delayLog = 1f;
-            }
-            else
-            {
-                delayLog -= Time.deltaTime;
-            }           
-        }
 
         public void Init()
         {
@@ -50,7 +33,7 @@ namespace AppFoxTest
 
         private void OnCreateNewView(IView view)
         {
-            _models.ForEach(m => m.TrySubscribeView(view));
+            _models.ForEach(m => m.OnAddNewView(view));
         }
     }
 }

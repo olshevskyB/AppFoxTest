@@ -14,12 +14,12 @@ namespace AppFoxTest
             if (o is IInjectable injectable)
             {
                 Inject(injectable);
-            }
+            }           
+            _installedObjects.Add(o);
             if (o is IInitializable initializable)
             {
                 initializable.Init();
             }
-            _installedObjects.Add(o);
         }
 
         public T GetSingle<T>()

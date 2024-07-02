@@ -1,9 +1,9 @@
+using UnityEngine;
+
 namespace AppFoxTest
 {
     public abstract class AbstractScreenView : AbstractMonoView, IView
     {
-        protected IPresenter _presenter;
-
         private void Awake()
         {
             gameObject.SetActive(false);
@@ -17,11 +17,6 @@ namespace AppFoxTest
         public virtual void Open()
         {
             gameObject.SetActive(true);
-        }
-
-        public override void SetPresenter(IPresenter presenter)
-        {
-            _presenter = presenter;
         }
     }
 }

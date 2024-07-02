@@ -6,7 +6,7 @@ namespace AppFoxTest
     public class EntityModel : IEntityModel
     {
         private EntitySO _entitySO;
-        private List<IEntityPresenter> _entityPresentors = new List<IEntityPresenter>();
+        private List<IEntityPresenter> _entityPresenters = new List<IEntityPresenter>();
 
         private float _baseAttack;
         private float _baseSpeed;
@@ -24,7 +24,7 @@ namespace AppFoxTest
                 if (value == HP)
                     return;               
                 _hp = value;
-                _entityPresentors.ForEach(p => p.UpdateHP());
+                _entityPresenters.ForEach(p => p.UpdateHP());
             }
         }
 
@@ -52,11 +52,11 @@ namespace AppFoxTest
         {
             if (presenter is IEntityPresenter entityPresenter)
             {
-                _entityPresentors.Add(entityPresenter);
+                _entityPresenters.Add(entityPresenter);
             }
         }
 
-        public void TrySubscribeView(IView view)
+        public void OnAddNewView(IView view)
         {
             if (view is IEntityView entityView && entityView.ID == _id)
             {
@@ -64,9 +64,19 @@ namespace AppFoxTest
             }
         }
 
+        public void OnUnloadView(IView view)
+        {
+            if (view is IEntityView entityView && entityView.ID == _id)
+            {
+                _entityPresenters.Clear();
+            }
+        }
+
         public string GetLogText()
         {
             return $"Entity ID: \n {_id} HP: {_hp} \n BaseAttack: {_baseAttack} \n BaseSpeed: {_baseSpeed} \n____________";
         }
+
+        
     }
 }
