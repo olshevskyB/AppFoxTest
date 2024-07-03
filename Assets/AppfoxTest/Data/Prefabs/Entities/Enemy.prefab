@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6325396513698959564}
   - component: {fileID: 2517952647648923982}
   - component: {fileID: 4581220416995113691}
-  - component: {fileID: 3065334117661882814}
+  - component: {fileID: 3889688481111239705}
   - component: {fileID: 711062453917876579}
   - component: {fileID: 1697161053404953808}
   - component: {fileID: 3205243851831682918}
@@ -90,7 +90,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.05, z: 0}
---- !u!114 &3065334117661882814
+--- !u!114 &3889688481111239705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1125714005545884584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac001feb653ed0f419f50bc34190f340, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a80356a14d9060479d90fe4575ab360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &711062453917876579
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movableComponent: {fileID: 1822854049125927709}
   _attackComponent: {fileID: 3819065780130867842}
-  _entityTriggerHandler: {fileID: 3065334117661882814}
+  _entityTriggerHandler: {fileID: 3889688481111239705}
   _entityController: {fileID: 1697161053404953808}
 --- !u!114 &1697161053404953808
 MonoBehaviour:

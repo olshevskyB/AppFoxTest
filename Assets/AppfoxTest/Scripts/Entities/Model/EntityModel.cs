@@ -8,10 +8,10 @@ namespace AppFoxTest
         private EntitySO _entitySO;
         private List<IEntityPresenter> _entityPresenters = new List<IEntityPresenter>();
 
-        private float _baseAttack;
-        private float _baseSpeed;
+        protected float _baseAttack;
+        protected float _baseSpeed;
 
-        private float _hp;
+        protected float _hp;
         public float HP
         {
             get
@@ -34,10 +34,7 @@ namespace AppFoxTest
             private set;
         }
 
-        public bool IsPlayer => _isPlayer;
-
-        private int _id;
-        private bool _isPlayer;
+        protected int _id;
 
         public EntityModel(EntitySO so, int id)
         {
@@ -46,7 +43,6 @@ namespace AppFoxTest
             _baseSpeed = _entitySO.MovementSpeed;
             _hp = _entitySO.HP;
             _id = id;
-            _isPlayer = so.EntityPrefab is PlayerMonoEntityView;
             Config = so;
         }
 
@@ -67,20 +63,13 @@ namespace AppFoxTest
             }
         }
 
-        public void OnAddNewView(IView view)
-        {
-            if ((view is PlayerHUDScreenView hud && _isPlayer))
-            {
-                new GameEntityPresenter(hud, this);
-                return;
-            }
-
+        public virtual void OnAddNewView(IView view)
+        {         
             if (view is IEntityView entityView && entityView.ID == _id)
             {
                 new GameEntityPresenter(entityView, this);
                 return;
-            }
-                      
+            }                     
         }
 
         public void OnUnloadView(IView view)

@@ -13,11 +13,6 @@
             get;
         }
 
-        public bool IsPlayer
-        {
-            get;
-        }
-
         public float CalculateAttack();
         public float CalculateMovementSpeed();
     }

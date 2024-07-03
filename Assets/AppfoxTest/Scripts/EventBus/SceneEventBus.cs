@@ -19,10 +19,12 @@ namespace AppFoxTest
         public Action<IControlEntityView> OnEntityDead;
         public Action<IControlEntityView> OnPlayerSpawn;
         public Action<IControlEntityView> OnPlayerDeath;
+        public Action<ICollectable> OnPlayerCollect;
 
         public Action<AbstractQuest> OnQuestComplete;
         public Action<AbstractQuest> OnQuestProgress;
         public Action OnCompleteAllLevelQuest;
         public Action OnInvokeRestart;
+        
     }
 }

@@ -3,11 +3,11 @@
 namespace AppFoxTest
 {
     [RequireComponent(typeof(Collider))]
-    public abstract class EntityTriggerHandler : MonoBehaviour, IInjectable
+    public class EntityTriggerHandler : MonoBehaviour, IInjectable
     {
         protected SceneEventBus _sceneEventBus;
 
-        private IEntityView _entityView;
+        protected IEntityView _entityView;
 
         private int _lastAttackId;
 

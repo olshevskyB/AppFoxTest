@@ -1,7 +1,9 @@
 namespace AppFoxTest
 {
-    public class PlayerMonoEntityView : MonoEntityView
+    public class PlayerMonoEntityView : MonoEntityView, IPlayerEntityView
     {
+        IPlayerPresenter PlayerPresenter => _presenter as IPlayerPresenter;
+
         private void Start()
         {
             _sceneEventBus.OnPlayerSpawn?.Invoke(this);
@@ -11,6 +13,11 @@ namespace AppFoxTest
         {
             base.Death();
             _sceneEventBus.OnPlayerDeath?.Invoke(this);
+        }
+
+        public void Collect(ICollectable collectable)
+        {
+            PlayerPresenter.Collect(collectable);
         }
     }
 }

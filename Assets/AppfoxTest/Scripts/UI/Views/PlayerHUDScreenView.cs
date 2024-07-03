@@ -30,7 +30,7 @@ namespace AppFoxTest
         public override void Open()
         {
             base.Open();
-            var playerModel = _modelLocator.Models.OfType<IEntityModel>().FirstOrDefault(e => e.IsPlayer);
+            var playerModel = _modelLocator.Models.OfType<IPlayerEntityModel>().FirstOrDefault();
             playerModel.OnAddNewView(this);
         }
 

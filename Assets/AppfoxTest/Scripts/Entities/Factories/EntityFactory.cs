@@ -21,7 +21,7 @@ namespace AppFoxTest
         {
             if (spawnPoint.TrySelectEntity(out EntitySO entity))
             {
-                EntityModel entityModel = new EntityModel(entity, _iteration);
+                IEntityModel entityModel = entity.EntityPrefab is IPlayerEntityView ? new PlayerEntityModel(entity, _iteration) : new EntityModel(entity, _iteration);
                 _globalEventBus.OnCreateNewModel(entityModel);
 
                 IControlEntityView loadedEntity = _prefabLoader.Load(entity.EntityPrefab, unloader);
