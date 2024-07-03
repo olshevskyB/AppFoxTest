@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace AppFoxTest
@@ -23,9 +24,15 @@ namespace AppFoxTest
         private void AddListeners()
         {
             _sceneEvents.OnEntityDead += OnEntityDead;
-        }
+            _sceneEvents.OnLevelLoaded += OnLevelLoaded;
+        }     
 
         private void RemoveListeners()
+        {
+            _sceneEvents.OnEntityDead -= OnEntityDead;
+            _sceneEvents.OnLevelLoaded -= OnLevelLoaded;
+        }
+        private void OnLevelLoaded(LevelView view)
         {
             _sceneEvents.OnEntityDead -= OnEntityDead;
         }

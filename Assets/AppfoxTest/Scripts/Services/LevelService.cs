@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AppFoxTest
 {
@@ -42,7 +41,7 @@ namespace AppFoxTest
             _sceneEventBus.OnInvokeRestart += OnInvokeRestartLevel;
             _globalEventBus.OnInvokeStartGame += OnInvokeStartGame;
         }
-     
+
         private void RemoveListeners()
         {
             _sceneEventBus.OnInvokeLevel -= LoadLevel;
@@ -72,7 +71,7 @@ namespace AppFoxTest
             _sceneEventBus.OnLevelLoaded?.Invoke(level);
             _globalEventBus.OnCompleteLoading?.Invoke();
         }
-    
+
         private void SetupLevel(LevelView level)
         {
             foreach (SpawnPoint spawnPoint in level.SpawnPoints)
