@@ -15,11 +15,13 @@ namespace AppFoxTest
         private List<AbstractScreenView> _additiveModeActiveScreens = new List<AbstractScreenView>();
 
         private GlobalEventBus _globalEvent;
+        private SceneEventBus _sceneEvents;
 
         public void Inject(DIContainer container)
         {
             _uiFactory = container.GetSingle<IUIFactory>();
             _globalEvent = container.GetSingle<GlobalEventBus>();
+            _sceneEvents = container.GetSingle<SceneEventBus>();
             AddListeners();
         }
 
@@ -62,12 +64,15 @@ namespace AppFoxTest
         {
             _globalEvent.OnStartLoading += OnLoading;
             _globalEvent.OnCompleteLoading += OnCompletedLoading;
-        }     
+            _sceneEvents.OnPlayerDeath += ShowLoseScreen;
+        }
+
 
         private void RemoveListeners()
         {
             _globalEvent.OnStartLoading -= OnLoading;
             _globalEvent.OnCompleteLoading -= OnCompletedLoading;
+            _sceneEvents.OnPlayerDeath += ShowLoseScreen;
         }
 
         private void OnLoading()
@@ -78,6 +83,11 @@ namespace AppFoxTest
         private void OnCompletedLoading()
         {
             OpenScreen<GameScreenView>();
+        }
+
+        private void ShowLoseScreen(IControlEntityView view)
+        {
+            OpenScreen<LoseScreenView>();
         }
 
         private void OpenScreen(bool additive, AbstractScreenView screenView)
@@ -108,6 +118,6 @@ namespace AppFoxTest
         {
             screenView.Open();
             _additiveModeActiveScreens.Add(screenView);
-        }
+        }      
     }
 }

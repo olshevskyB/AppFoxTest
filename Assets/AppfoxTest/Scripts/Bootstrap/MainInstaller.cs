@@ -11,6 +11,7 @@ namespace AppFoxTest
         public override void Init()
         {
             _diContainer.AddNewObjectAndInit(new GlobalEventBus());
+            _diContainer.AddNewObjectAndInit(new SceneEventBus());
             _diContainer.AddNewObjectAndInit(_scenesConfig);
             _diContainer.AddNewObjectAndInit(_screensConfig);
 

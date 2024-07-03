@@ -27,17 +27,24 @@ namespace AppFoxTest
         {
             _sceneEventBus.OnPlayerSpawn += OnPlayerSpawn;
             _sceneEventBus.OnCompleteAllLevelQuest += OnCompleteAllLevelQuest;
+            _sceneEventBus.OnPlayerDeath += OnPlayerDeath;
         }
     
         private void RemoveListener()
         {
             _sceneEventBus.OnPlayerSpawn -= OnPlayerSpawn;
             _sceneEventBus.OnCompleteAllLevelQuest -= OnCompleteAllLevelQuest;
+            _sceneEventBus.OnPlayerDeath -= OnPlayerDeath;
         }
 
         private void OnPlayerSpawn(IControlEntityView view)
         {
             _uiService.OpenScreen<PlayerHUDScreenView>(true);
+        }
+
+        private void OnPlayerDeath(IControlEntityView view)
+        {
+            _uiService.OpenScreen<LoseScreenView>(true);
         }
 
         private void OnCompleteAllLevelQuest()

@@ -6,5 +6,11 @@ namespace AppFoxTest
         {
             _sceneEventBus.OnPlayerSpawn?.Invoke(this);
         }
+
+        public override void Death()
+        {
+            base.Death();
+            _sceneEventBus.OnPlayerDeath?.Invoke(this);
+        }
     }
 }

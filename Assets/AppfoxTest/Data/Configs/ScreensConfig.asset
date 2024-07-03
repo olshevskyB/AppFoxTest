@@ -18,6 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 81bbc514638e6cb49a1877ab01cc3fd9, type: 2}
   - {fileID: 11400000, guid: b316e77a601507346968b10bf671e8ea, type: 2}
   - {fileID: 11400000, guid: 34a00664703bb644590456fb2d4c070a, type: 2}
+  - {fileID: 11400000, guid: c0cb8ee5bb5e78b4ab5f75e30494e061, type: 2}
   _canvasPrefab: {fileID: 3112925433011953527, guid: c1fec3c44cb24ef4e8c007f60bf9a728, type: 3}
   _startScreen: {fileID: 11400000, guid: 1eb6abefa9d3a4d45abbad5283aaa6f5, type: 2}
   _loadingScreen: {fileID: 11400000, guid: 1eb6abefa9d3a4d45abbad5283aaa6f5, type: 2}
