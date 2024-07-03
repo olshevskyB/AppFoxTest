@@ -6,8 +6,9 @@ namespace AppFoxTest
     public class SceneEventBus
     {
         public Action<LevelView> OnLevelLoaded;
-        public Action<LevelSO> OnInvokeNextLevel;
-        
+        public Action OnInvokeNextLevel;
+        public Action<int> OnInvokeLevel;
+
         public Action<GameObjectSO<LevelView>, float> OnLevelLoadingProgress;
         public Action<Vector2> OnAxisPressed;
         public Action OnJumpButtonPressed;
@@ -20,5 +21,6 @@ namespace AppFoxTest
 
         public Action<AbstractQuest> OnQuestComplete;
         public Action<AbstractQuest> OnQuestProgress;
+        public Action OnCompleteAllLevelQuest;
     }
 }

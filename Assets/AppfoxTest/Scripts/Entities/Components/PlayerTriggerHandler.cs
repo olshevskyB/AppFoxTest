@@ -9,7 +9,7 @@ namespace AppFoxTest
             base.EnterTrigger(other);
             if (other.TryGetComponent(out NextLevelCube cube))
             {
-                _sceneEventBus.OnInvokeNextLevel?.Invoke(cube.LevelSO);
+                _sceneEventBus.OnInvokeLevel?.Invoke(cube.Level);
             }
         }
     }

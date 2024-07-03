@@ -5,8 +5,8 @@ namespace AppFoxTest
     [RequireComponent(typeof(Collider))]
     public class NextLevelCube : MonoBehaviour
     {
-        [SerializeField] private LevelSO _levelSO;
+        [SerializeField] private int _level;
 
-        public LevelSO LevelSO => _levelSO;
+        public int Level => _level;
     }
 }

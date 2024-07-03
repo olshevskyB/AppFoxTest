@@ -10,6 +10,7 @@ namespace AppFoxTest
         private LevelsConfig _levelsConfig;
         private IEntityFactory _entityFactory;
         private IUnloader _unloader;
+        private int _currentLevel;
 
         public void Inject(DIContainer container)
         {
@@ -19,7 +20,7 @@ namespace AppFoxTest
             _levelsConfig = container.GetSingle<LevelsConfig>();
             _unloader = container.GetTransient<IUnloader>();
             _entityFactory = container.GetSingle<IEntityFactory>();
-        }   
+        }
 
         public void Init()
         {
@@ -33,19 +34,21 @@ namespace AppFoxTest
 
         private void AddListeners()
         {
-            _sceneEventBus.OnInvokeNextLevel += LoadLevel;
+            _sceneEventBus.OnInvokeLevel += LoadLevel;
+            _sceneEventBus.OnInvokeNextLevel += LoadNextLevel;
             _globalEventBus.OnInvokeStartGame += OnInvokeStartGame;
         }
 
         private void RemoveListeners()
         {
-            _sceneEventBus.OnInvokeNextLevel -= LoadLevel;
+            _sceneEventBus.OnInvokeLevel -= LoadLevel;
+            _sceneEventBus.OnInvokeNextLevel -= LoadNextLevel;
             _globalEventBus.OnInvokeStartGame -= OnInvokeStartGame;
         }
 
         private void OnInvokeStartGame()
         {
-            LoadLevel(_levelsConfig.FirstLevel);
+            LoadLevel(0);
         }
 
         private void OnProgress(GameObjectSO<LevelView> so, float progress)
@@ -57,6 +60,7 @@ namespace AppFoxTest
         {
             SetupLevel(level);
             _sceneEventBus.OnLevelLoaded?.Invoke(level);
+            _globalEventBus.OnCompleteLoading?.Invoke();
         }
 
         private void SetupLevel(LevelView level)
@@ -67,10 +71,22 @@ namespace AppFoxTest
             }
         }
 
-        private void LoadLevel(LevelSO level)
+        private void LoadNextLevel()
+        {
+            _currentLevel++;
+            if (_currentLevel >= _levelsConfig.Levels.Count)
+            {
+                _currentLevel = 0;
+            }
+            LoadLevel(_currentLevel);
+        }
+
+        private void LoadLevel(int level)
         {
             _unloader.Unload();
-            _prefabLoader.LoadAsync(level, _unloader, OnLoaded, OnProgress);
+            _prefabLoader.LoadAsync(_levelsConfig.Levels[level], _unloader, OnLoaded, OnProgress);
+            _globalEventBus.OnStartLoading?.Invoke();
+            _currentLevel = level;
         }
     }
 }

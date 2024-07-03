@@ -1,6 +1,5 @@
-using UnityEngine;
 using System.Linq;
-using System;
+using UnityEngine;
 
 namespace AppFoxTest
 {
@@ -63,6 +62,10 @@ namespace AppFoxTest
         private void OnQuestComplete(AbstractQuest quest)
         {
             _currentModel.AddCompletedQuest(quest);
+            if (_currentModel.Quests.Count <= 0)
+            {
+                _sceneEvent.OnCompleteAllLevelQuest.Invoke();
+            }
         }
     }
 }

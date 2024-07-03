@@ -7,7 +7,5 @@ namespace AppFoxTest
         public void OnAddNewView(IView view);
 
         public void OnUnloadView(IView view);      
-
-        public string GetLogText();
     }
 }

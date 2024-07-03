@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ee99826a85f79d4ea30369464adaa99, type: 3}
-  m_Name: Kill5EnemiesQuest
+  m_Script: {fileID: 11500000, guid: 5ce3971b9a1ca144b8862ed358aa3689, type: 3}
+  m_Name: WinScreenSO
   m_EditorClassIdentifier: 
-  _enemiesCountRequire: 1
+  _screenView: {fileID: 7213426845663378559, guid: dffa254f63f4aff4fa4847f45472a876, type: 3}

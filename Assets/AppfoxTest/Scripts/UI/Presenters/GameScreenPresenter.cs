@@ -4,6 +4,7 @@ namespace AppFoxTest
     {
         public GameScreenPresenter(GameScreenView view, GameScreenModel model) : base(view, model)
         {
+
         }
 
         public override void UpdateAllValues()

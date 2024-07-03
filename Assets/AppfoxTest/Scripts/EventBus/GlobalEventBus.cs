@@ -9,6 +9,7 @@ namespace AppFoxTest
         public Action<SceneEventBus> OnSceneEventBusInit;
 
         public Action OnStartLoading;
+        public Action OnCompleteLoading;
         public Action OnInvokeStartGame;
 
         public Action<IView> OnCreateView;

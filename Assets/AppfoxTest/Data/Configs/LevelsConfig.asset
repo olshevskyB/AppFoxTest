@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - {fileID: 11400000, guid: d93954f6ecbdfa641b2253707c2f8317, type: 2}
-  PlayerController: {fileID: 5331581909882548156, guid: 72cfdbebc77b962459f0721efeb47bc2, type: 3}
+  - {fileID: 11400000, guid: 7ad654b78d9bd1a43b83e353fad3f683, type: 2}
