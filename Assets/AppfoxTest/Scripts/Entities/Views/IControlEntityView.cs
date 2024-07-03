@@ -9,9 +9,14 @@ namespace AppFoxTest
             get;
         }
 
+        public EntityController Controller
+        {
+            get;
+        }
+
         public void SetPositionAndRotation(Vector3 position, Quaternion rotation);
 
-        public void SetParent(Transform parent);
+        public void SetParent(Transform parent);        
     }
 }
 

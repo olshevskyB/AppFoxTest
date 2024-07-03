@@ -117,6 +117,7 @@ MonoBehaviour:
   _movableComponent: {fileID: 1822854049125927709}
   _attackComponent: {fileID: 3819065780130867842}
   _entityTriggerHandler: {fileID: 3065334117661882814}
+  _entityController: {fileID: 1697161053404953808}
 --- !u!114 &1697161053404953808
 MonoBehaviour:
   m_ObjectHideFlags: 0

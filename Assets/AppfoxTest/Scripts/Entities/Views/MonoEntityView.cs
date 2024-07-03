@@ -16,6 +16,9 @@ namespace AppFoxTest
         [SerializeField]
         private EntityTriggerHandler _entityTriggerHandler;
 
+        [SerializeField]
+        private EntityController _entityController;
+
         protected SceneEventBus _sceneEventBus;
 
         private int _id;
@@ -34,6 +37,9 @@ namespace AppFoxTest
             get;
             set ; 
         }
+
+        public EntityController Controller => _entityController;
+
 
         public override void Inject(DIContainer container)
         {

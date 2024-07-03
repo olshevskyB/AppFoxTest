@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace AppFoxTest
 {
     public class GameScreenView : AbstractScreenView
@@ -15,15 +10,20 @@ namespace AppFoxTest
             AddListener();
         }
 
+        public void Start()
+        {
+            _uiService.OpenScreen<QuestHUDScreenView>(true);
+        }
+
         private void OnDestroy()
         {
-            RemoveListener();           
+            RemoveListener();
         }
 
         private void AddListener()
         {
             _sceneEventBus.OnPlayerSpawn += OnPlayerSpawn;
-        }        
+        }
 
         private void RemoveListener()
         {

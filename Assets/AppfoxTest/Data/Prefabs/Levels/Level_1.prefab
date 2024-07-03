@@ -5905,6 +5905,8 @@ MonoBehaviour:
   - {fileID: 2742677364355515845}
   - {fileID: 6207263649346590127}
   - {fileID: 4421496547311052826}
+  _quests:
+  - {fileID: 11400000, guid: 69fc97c4f46ac5d4a94e294b30927a02, type: 2}
 --- !u!1 &8685542080662987203
 GameObject:
   m_ObjectHideFlags: 0

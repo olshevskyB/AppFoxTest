@@ -22,11 +22,18 @@ namespace AppFoxTest
         public void Init()
         {
             _models.Add(new MainMenuModel());
+            _models.Add(new StartScreenModel());
+            _models.Add(new GameScreenModel());
         }
 
         public T GetModel<T>() where T : IModel
         {
             return _models.OfType<T>().FirstOrDefault();
+        }
+
+        public void RemoveModel(IModel model)
+        {
+            _models.Remove(model);
         }
 
         public void AddModel(IModel model)

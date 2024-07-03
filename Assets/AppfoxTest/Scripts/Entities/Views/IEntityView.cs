@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace AppFoxTest
 {
     public interface IEntityView : IView, IInitializable
@@ -9,7 +7,7 @@ namespace AppFoxTest
             get;
             set;
         }
-       
+
         public void SetHP(float hp);
 
         public void SetMovementSpeed(float speed);

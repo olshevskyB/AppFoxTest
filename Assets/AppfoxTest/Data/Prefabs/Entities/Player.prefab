@@ -143,6 +143,7 @@ MonoBehaviour:
   _movableComponent: {fileID: 6005649913243003102}
   _attackComponent: {fileID: 3819065780130867842}
   _entityTriggerHandler: {fileID: 3065334117661882814}
+  _entityController: {fileID: 5331581909882548156}
 --- !u!1 &1862111849812004827
 GameObject:
   m_ObjectHideFlags: 0

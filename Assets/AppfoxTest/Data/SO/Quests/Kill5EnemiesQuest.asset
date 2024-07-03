@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed96d3b7c90ebc9498374227acbd803d, type: 3}
-  m_Name: PlayerSO
+  m_Script: {fileID: 11500000, guid: 9ee99826a85f79d4ea30369464adaa99, type: 3}
+  m_Name: Kill5EnemiesQuest
   m_EditorClassIdentifier: 
-  _hp: 50
-  _baseAttack: 25
-  _movementSpeed: 10
-  _entityView: {fileID: 4997936801577085345, guid: 72cfdbebc77b962459f0721efeb47bc2, type: 3}
+  _enemiesCountRequire: 5

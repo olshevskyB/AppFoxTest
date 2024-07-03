@@ -19,6 +19,7 @@ namespace AppFoxTest
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<CameraService>());
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<LevelService>());
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<InputService>());
+            _diContainer.AddNewObjectAndInit(CreateAsGameObject<QuestService>());
         }
     }
 }
