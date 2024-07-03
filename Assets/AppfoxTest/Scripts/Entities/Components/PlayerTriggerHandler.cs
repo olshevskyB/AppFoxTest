@@ -16,7 +16,6 @@ namespace AppFoxTest
             }
             if (other.TryGetComponent(out ICollectable collectable))
             {
-                _sceneEventBus.OnPlayerCollect?.Invoke(collectable);
                 _playerEntityView.Collect(collectable);                
             }
         }
