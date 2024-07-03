@@ -7,6 +7,12 @@ namespace AppFoxTest
         [SerializeField]
         private Camera _camera;
 
+        [SerializeField]
+        private Vector3 _cameraOffset = new Vector3(0,20f,0);
+
+        [SerializeField]
+        private float _cameraSpeed = 3f;
+
         private Transform _target;
 
         private SceneEventBus _sceneEventBus;
@@ -38,7 +44,7 @@ namespace AppFoxTest
         {
             if (_target != null)
             {
-                transform.position = _target.position + Vector3.up * 15f;
+                transform.position = Vector3.MoveTowards(transform.position, _target.position + _cameraOffset, _cameraSpeed * Time.deltaTime);
             }            
         }
     }

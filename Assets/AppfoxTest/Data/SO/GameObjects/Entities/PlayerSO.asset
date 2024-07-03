@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _baseAttack: 25
-  _movementSpeed: 10
+  _movementSpeed: 30
   _entityView: {fileID: 4997936801577085345, guid: 72cfdbebc77b962459f0721efeb47bc2, type: 3}

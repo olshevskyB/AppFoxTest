@@ -10,9 +10,9 @@ namespace AppFoxTest
 
         public abstract void MoveByDirection(Vector3 direction);
 
-        public abstract void Move(Vector3 movement);
-
         public abstract void MoveByDestination(Vector3 destination);
+
+        public abstract void Jump();
 
         public virtual void UpdateMovementSpeed(float value)
         {

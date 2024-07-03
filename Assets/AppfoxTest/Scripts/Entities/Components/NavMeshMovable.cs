@@ -25,19 +25,19 @@ namespace AppFoxTest
             transform.LookAt(position, Vector3.up);
         }
 
-        public override void Move(Vector3 movement)
-        {
-            transform.position += movement;
-        }
-
         public override void MoveByDirection(Vector3 direction)
         {
-            transform.position += direction.normalized * Time.deltaTime * _movementSpeed;
+            _meshAgent.SetDestination(transform.position + direction.normalized);
         }
 
         public override void MoveByDestination(Vector3 destination)
         {
             _meshAgent.SetDestination(destination);
+        }
+
+        public override void Jump()
+        {
+            
         }
     }
 }

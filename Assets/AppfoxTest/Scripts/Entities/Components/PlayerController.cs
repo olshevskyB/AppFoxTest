@@ -51,7 +51,7 @@ namespace AppFoxTest
 
         private void OnJumpButtonPressed()
         {
-            _movable.Move(Vector3.up * 25000f);
+            _movable.Jump();
         }
     }
 }
