@@ -6,6 +6,8 @@ namespace AppFoxTest
     {
         protected GlobalEventBus _globalEventBus;
         protected UIService _uiService;
+
+        protected IPresenter _presenter;
         
         public virtual void Inject(DIContainer container)
         {
@@ -17,6 +19,14 @@ namespace AppFoxTest
             _globalEventBus.OnCreateView(this);
         }
 
-        public abstract void SetPresenter(IPresenter presenter);
+        public virtual void SetPresenter(IPresenter presenter) 
+        {
+            _presenter = presenter;
+        }
+
+        public virtual void UnbindPresenter()
+        {
+            _presenter = default;
+        }
     }
 }

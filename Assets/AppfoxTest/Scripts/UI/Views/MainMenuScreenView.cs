@@ -41,18 +41,6 @@ namespace AppFoxTest
             }
         }
 
-        public override void SetPresenter(IPresenter presenter)
-        {
-            if (presenter is MainMenuPresenter menuPresenter)
-            {
-                _menuPresenter = menuPresenter;
-            }
-            else
-            {
-                Debug.LogError($"The presenter {presenter} is not an MainMenuPresenter!");
-            }
-        }
-
         private void Awake()
         {
             _startButton.onClick.AddListener(StartGame);

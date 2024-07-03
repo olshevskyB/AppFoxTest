@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace AppFoxTest
     public class ModelLocator : MonoBehaviour, IInjectable, IInitializable
     {
         private GlobalEventBus _eventBus;
+        private SceneEventBus _sceneEvenBus;
 
         private List<IModel> _models = new List<IModel>();
 
@@ -19,11 +21,22 @@ namespace AppFoxTest
             _eventBus.OnCreateNewModel += OnCreateNewModel;
         }
 
+        public void DeleteLevelContextModels()
+        {
+            List<ILevelContextModel> _modelsForDelete = _models.OfType<ILevelContextModel>().ToList();
+            _modelsForDelete.ForEach(m => 
+            { 
+                m.Delete();
+                RemoveModel(m);
+            }); 
+        }
+
         public void Init()
         {
             _models.Add(new MainMenuModel());
             _models.Add(new StartScreenModel());
             _models.Add(new GameScreenModel());
+            _models.Add(new WinScreenModel());
         }
 
         public T GetModel<T>() where T : IModel

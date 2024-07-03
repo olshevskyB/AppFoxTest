@@ -9,15 +9,7 @@ namespace AppFoxTest
         [SerializeField]
         private Button _nextLevelButton;
 
-        private IPresenter _presenter;
-
         private SceneEventBus _sceneEvents;
-
-        public override void SetPresenter(IPresenter presenter)
-        {
-            _presenter = presenter;
-            
-        }
 
         public override void Inject(DIContainer container)
         {

@@ -24,8 +24,13 @@ namespace AppFoxTest
         public override void Inject(DIContainer container)
         {
             base.Inject(container);
-            _modelLocator = container.GetSingle<ModelLocator>();
-            var playerModel = _modelLocator.Models.OfType<IEntityModel>().FirstOrDefault(e=>e.IsPlayer);
+            _modelLocator = container.GetSingle<ModelLocator>();         
+        }
+
+        public override void Open()
+        {
+            base.Open();
+            var playerModel = _modelLocator.Models.OfType<IEntityModel>().FirstOrDefault(e => e.IsPlayer);
             playerModel.OnAddNewView(this);
         }
 
@@ -52,14 +57,6 @@ namespace AppFoxTest
         public void SetMovementSpeed(float speed)
         {
             
-        }
-
-        public override void SetPresenter(IPresenter presenter)
-        {
-            if (presenter is IEntityPresenter entityPresenter)
-            {
-                _entityPresenter = entityPresenter;
-            }
         }
     }
 }

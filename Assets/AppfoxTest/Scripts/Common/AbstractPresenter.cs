@@ -16,6 +16,13 @@ namespace AppFoxTest
             UpdateAllValues();
         }
 
+        public void Unbind()
+        {
+            _view.UnbindPresenter();
+            _view = default;
+            _model = default;           
+        }
+
         public abstract void UpdateAllValues();
     }
 }

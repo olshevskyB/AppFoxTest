@@ -1,6 +1,6 @@
 ﻿namespace AppFoxTest
 {
-    public interface IEntityModel : IModel
+    public interface IEntityModel : ILevelContextModel
     {
         public float HP
         {

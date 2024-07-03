@@ -10,6 +10,7 @@ namespace AppFoxTest
         private LevelsConfig _levelsConfig;
         private IEntityFactory _entityFactory;
         private IUnloader _unloader;
+        private ModelLocator _modeLocator;
         private int _currentLevel;
 
         public void Inject(DIContainer container)
@@ -20,6 +21,7 @@ namespace AppFoxTest
             _levelsConfig = container.GetSingle<LevelsConfig>();
             _unloader = container.GetTransient<IUnloader>();
             _entityFactory = container.GetSingle<IEntityFactory>();
+            _modeLocator = container.GetSingle<ModelLocator>();
         }
 
         public void Init()
@@ -84,6 +86,7 @@ namespace AppFoxTest
         private void LoadLevel(int level)
         {
             _unloader.Unload();
+            _modeLocator.DeleteLevelContextModels();
             _prefabLoader.LoadAsync(_levelsConfig.Levels[level], _unloader, OnLoaded, OnProgress);
             _globalEventBus.OnStartLoading?.Invoke();
             _currentLevel = level;

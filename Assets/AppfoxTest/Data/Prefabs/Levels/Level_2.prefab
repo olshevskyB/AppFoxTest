@@ -606,6 +606,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoints:
   - {fileID: 8773536406714711637}
+  _quests:
+  - {fileID: 11400000, guid: 102bdb48da96208448bf1212a10982a0, type: 2}
 --- !u!1 &8685542080662987203
 GameObject:
   m_ObjectHideFlags: 0

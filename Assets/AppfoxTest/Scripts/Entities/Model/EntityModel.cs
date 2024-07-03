@@ -69,15 +69,18 @@ namespace AppFoxTest
 
         public void OnAddNewView(IView view)
         {
+            if ((view is PlayerHUDScreenView hud && _isPlayer))
+            {
+                new GameEntityPresenter(hud, this);
+                return;
+            }
+
             if (view is IEntityView entityView && entityView.ID == _id)
             {
                 new GameEntityPresenter(entityView, this);
+                return;
             }
-            if ((_isPlayer && view is PlayerHUDScreenView hud))
-            {
-                new GameEntityPresenter(hud, this);
-            }
-            
+                      
         }
 
         public void OnUnloadView(IView view)
@@ -91,6 +94,11 @@ namespace AppFoxTest
         public string GetLogText()
         {
             return $"Entity ID: \n {_id} HP: {_hp} \n BaseAttack: {_baseAttack} \n BaseSpeed: {_baseSpeed} \n____________";
+        }
+
+        public void Delete()
+        {
+            _entityPresenters.ForEach(p => p.Unbind());
         }
     }
 }

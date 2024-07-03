@@ -28,10 +28,5 @@ namespace AppFoxTest
         {
             _uiService.OpenScreen<MainMenuScreenView>();
         }
-
-        public override void SetPresenter(IPresenter presenter)
-        {
-
-        }
     }
 }

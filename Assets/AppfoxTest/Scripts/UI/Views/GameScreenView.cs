@@ -12,8 +12,9 @@ namespace AppFoxTest
             AddListener();
         }
 
-        public void Start()
+        public override void Open()
         {
+            base.Open();
             _uiService.OpenScreen<QuestHUDScreenView>(true);
         }
 
@@ -42,11 +43,6 @@ namespace AppFoxTest
         private void OnCompleteAllLevelQuest()
         {
             _uiService.OpenScreen<WinScreenView>();
-        }
-
-        public override void SetPresenter(IPresenter presenter)
-        {
-
         }
     }
 }
