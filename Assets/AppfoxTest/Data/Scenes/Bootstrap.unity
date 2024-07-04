@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8400968d0754d439115f20ebc2af07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneManager: {fileID: 1688828839}
+  _sceneService: {fileID: 1688828839}
   _scenesConfig: {fileID: 11400000, guid: e69233ddd06d8b245bd9cb2af254ef21, type: 2}
   _screensConfig: {fileID: 11400000, guid: b0669c387babe084885b0abd70cd5e2d, type: 2}
 --- !u!1 &1688828838

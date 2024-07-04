@@ -30,10 +30,8 @@ namespace AppFoxTest
                 }
 
                 _globalEventBus.OnCreateNewModel(entityModel);
-                IControlEntityView loadedEntity = _prefabLoader.Load(entity.EntityPrefab, unloader);
+                IControlEntityView loadedEntity = _prefabLoader.Load(entity.EntityPrefab, unloader, spawnPoint.transform.position, spawnPoint.transform.rotation, parent.transform);
                 loadedEntity.ID = _iteration;
-                loadedEntity.SetParent(parent.transform);
-                loadedEntity.SetPositionAndRotation(spawnPoint.transform.position, spawnPoint.transform.rotation);
                 loadedEntity.StartPosition = spawnPoint.transform;
                 //При создании новой вида, обязательно нужно оповестить об этом модель, подробнее смотреть в MainInstaller
                 entityModel.AddView(loadedEntity);

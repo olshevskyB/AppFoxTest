@@ -28,6 +28,14 @@ namespace AppFoxTest
             return result;
         }
 
+        public T Load<T>(T prefab, IUnloader unloader, Vector3 position, Quaternion rotation, Transform parent = null) where T : UnityEngine.Object
+        {
+            var result = Instantiate(prefab, position, rotation, parent);
+            InjectObjects(result);
+            unloader.AddObject(result.GameObject());
+            return result;
+        }
+
         private IEnumerator StartLoading<T>(GameObjectSO<T> so, IUnloader unloader, Action<T> onLoaded, Action<GameObjectSO<T>, float> onProgress = null, Transform parent = null) where T : UnityEngine.Object
         {
             var asyncLoad = InstantiateAsync(so.Prefab, parent);
@@ -49,6 +57,6 @@ namespace AppFoxTest
             {
                 injectables[i].Inject(_container);
             }
-        }
+        }       
     }
 }
