@@ -1,15 +1,19 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace AppFoxTest
 {
-    public class PlayerHUDScreenView : AbstractScreenView, IEntityView
+    public class PlayerHUDScreenView : AbstractScreenView, IPlayerEntityView
     {
         [SerializeField]
         private Image _hpFillBar;
 
-        private EntitySO _entitySO;
+        [SerializeField]
+        private Image _manaFillBar;
+
+        private PlayerSO _playerSo;
 
         private ModelLocator _modelLocator;
 
@@ -44,15 +48,30 @@ namespace AppFoxTest
 
         public void SetConfig(EntitySO so)
         {
-            _entitySO = so;
+            _playerSo = so as PlayerSO;
         }
 
         public void SetHP(float hp)
         {
-            _hpFillBar.fillAmount = hp / _entitySO.HP;
+            _hpFillBar.fillAmount = hp / _playerSo.HP;
+        }
+
+        public void SetMana(float mana)
+        {
+            _manaFillBar.fillAmount = mana / _playerSo.Mana;
         }
 
         public void SetMovementSpeed(float speed)
+        {
+            
+        }
+
+        public void Collect(ICollectable collectable)
+        {
+            
+        }
+
+        public void SetSpells(List<AbstractSpell> spells)
         {
             
         }

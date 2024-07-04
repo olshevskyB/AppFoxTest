@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace AppFoxTest
 {
     public class PlayerMonoEntityView : MonoEntityView, IPlayerEntityView
@@ -18,6 +20,16 @@ namespace AppFoxTest
         public void Collect(ICollectable collectable)
         {
             PlayerPresenter.Collect(collectable);
+        }
+
+        public void SetMana(float mana)
+        {
+            
+        }
+
+        public void SetSpells(List<AbstractSpell> spells)
+        {
+            Controller.SetSpells(spells);
         }
     }
 }

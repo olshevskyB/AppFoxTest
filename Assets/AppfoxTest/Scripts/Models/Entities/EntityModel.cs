@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 namespace AppFoxTest
 {
     public class EntityModel : IEntityModel
     {
         private EntitySO _entitySO;
-        private List<IEntityPresenter> _entityPresenters = new List<IEntityPresenter>();
+
+        protected List<IEntityPresenter> _entityPresenters = new List<IEntityPresenter>();
 
         protected float _baseAttack;
         protected float _baseSpeed;
@@ -15,20 +15,20 @@ namespace AppFoxTest
         public float HP
         {
             get
-            {             
+            {
                 return _hp;
             }
             set
             {
                 if (value == HP)
-                    return;               
+                    return;
                 _hp = value;
                 _entityPresenters.ForEach(p => p.UpdateHP());
             }
         }
 
-        public EntitySO Config 
-        { 
+        public EntitySO Config
+        {
             get;
             private set;
         }
@@ -54,7 +54,7 @@ namespace AppFoxTest
             return _baseSpeed;
         }
 
-        public void AddPresenter(IPresenter presenter)
+        public virtual void AddPresenter(IPresenter presenter)
         {
             if (presenter is IEntityPresenter entityPresenter)
             {
@@ -63,12 +63,12 @@ namespace AppFoxTest
         }
 
         public virtual void AddView(IView view)
-        {         
+        {
             if (view is IEntityView entityView && entityView.ID == _id)
             {
                 new GameEntityPresenter(entityView, this);
                 return;
-            }                     
+            }
         }
 
         public void OnUnloadView(IView view)

@@ -15,6 +15,8 @@ namespace AppFoxTest
         public Action OnAttackButtonPressed;
         public Action OnPauseButtonPressed;
         public Action<Vector3> OnMouseUpdate;
+        public Action OnSpell1ButtonPressed;
+        public Action OnSpell2ButtonPressed;
 
         public Action<IControlEntityView> OnEntitySpawn;
         public Action<IControlEntityView> OnEntityDead;

@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43f0ce8f825509248b8e6ae593423438, type: 3}
-  m_Name: PlayerSpawnPointSO
+  m_Script: {fileID: 11500000, guid: f02436c89ce03004ebbfb527de26cedb, type: 3}
+  m_Name: ThrowBladeSpell
   m_EditorClassIdentifier: 
-  _entitiesForSpawn:
-  - {fileID: 11400000, guid: 2bce34ac9693bfa4cbc0330ea12d97f6, type: 2}
+  _manaConsume: 15
+  _damage: 25
+  _spellPrefab: {fileID: -8868487070792442981, guid: 6e0757614eab2114eaa3bc95b5743f23, type: 3}
+  _throwingRange: 10
+  _rotationSpeed: 720

@@ -55,6 +55,7 @@ namespace AppFoxTest
             if (presenter is IEntityPresenter entityPresenter)
             {
                 _presenter = entityPresenter;
+                _entityController.SetPresenter(entityPresenter);
             }
             else
             {
