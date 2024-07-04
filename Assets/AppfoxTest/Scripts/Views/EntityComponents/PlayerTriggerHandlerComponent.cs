@@ -2,7 +2,7 @@
 
 namespace AppFoxTest
 {
-    public class PlayerTriggerHandler : EntityTriggerHandler
+    public class PlayerTriggerHandlerComponent : EntityTriggerHandlerComponent
     {
         private IPlayerEntityView _playerEntityView => _entityView as IPlayerEntityView;
 

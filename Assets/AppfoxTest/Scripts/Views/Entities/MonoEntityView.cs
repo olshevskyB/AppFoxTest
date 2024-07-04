@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    [RequireComponent(typeof(EntityTriggerHandler))]
+    [RequireComponent(typeof(EntityTriggerHandlerComponent))]
     public class MonoEntityView : AbstractMonoView, IControlEntityView
     {
         private IEntityPresenter EntityPresenter => _presenter as IEntityPresenter;
@@ -14,7 +14,7 @@ namespace AppFoxTest
         private AttackComponent _attackComponent;
 
         [SerializeField]
-        private EntityTriggerHandler _entityTriggerHandler;
+        private EntityTriggerHandlerComponent _entityTriggerHandler;
 
         [SerializeField]
         private EntityController _entityController;

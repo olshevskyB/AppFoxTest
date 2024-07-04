@@ -3,7 +3,7 @@
 namespace AppFoxTest
 {
     [RequireComponent(typeof(Collider))]
-    public class EntityTriggerHandler : MonoBehaviour, IInjectable
+    public class EntityTriggerHandlerComponent : MonoBehaviour, IInjectable
     {
         protected SceneEventBus _sceneEventBus;
 

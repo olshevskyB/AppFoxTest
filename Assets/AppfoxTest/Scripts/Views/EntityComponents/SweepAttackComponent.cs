@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    public class SweepAttack : AttackComponent
+    public class SweepAttackComponent : AttackComponent
     {
         [SerializeField]
         private Vector2 _startAndFinaleRotationY = new Vector2(-45f, 45f);

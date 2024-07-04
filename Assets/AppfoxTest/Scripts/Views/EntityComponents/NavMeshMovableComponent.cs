@@ -4,7 +4,7 @@ using UnityEngine.AI;
 namespace AppFoxTest
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class NavMeshMovable : MovableComponent
+    public class NavMeshMovableComponent : MovableComponent
     {
         [SerializeField]
         private NavMeshAgent _meshAgent;

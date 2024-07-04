@@ -3,7 +3,7 @@ using UnityEngine;
 namespace AppFoxTest
 {
     [RequireComponent(typeof(MovableComponent))]
-    [RequireComponent(typeof(PlayerTriggerHandler))]
+    [RequireComponent(typeof(PlayerTriggerHandlerComponent))]
     public class PlayerController : EntityController
     {
         private Vector3 _movementOnNextFrame;
