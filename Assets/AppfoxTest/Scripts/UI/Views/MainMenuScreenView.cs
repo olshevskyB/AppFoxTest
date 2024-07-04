@@ -18,6 +18,18 @@ namespace AppFoxTest
             AddListener();
         }
 
+        public override void Open()
+        {
+            base.Open();
+            ApplicationController.SetPause(true);
+        }
+
+        public override void Close()
+        {
+            base.Close();
+            ApplicationController.SetPause(false);
+        }
+
         private void OnDestroy()
         {
             RemoveListener();

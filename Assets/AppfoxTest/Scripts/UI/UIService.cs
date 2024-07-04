@@ -65,14 +65,15 @@ namespace AppFoxTest
             _globalEvent.OnStartLoading += OnLoading;
             _globalEvent.OnCompleteLoading += OnCompletedLoading;
             _sceneEvents.OnPlayerDeath += ShowLoseScreen;
-        }
-
+            _sceneEvents.OnPauseButtonPressed += ShowMainMenu;
+        }    
 
         private void RemoveListeners()
         {
             _globalEvent.OnStartLoading -= OnLoading;
             _globalEvent.OnCompleteLoading -= OnCompletedLoading;
             _sceneEvents.OnPlayerDeath += ShowLoseScreen;
+            _sceneEvents.OnPauseButtonPressed -= ShowMainMenu;
         }
 
         private void OnLoading()
@@ -88,6 +89,11 @@ namespace AppFoxTest
         private void ShowLoseScreen(IControlEntityView view)
         {
             OpenScreen<LoseScreenView>();
+        }
+
+        private void ShowMainMenu()
+        {
+            OpenScreen<PauseScreenView>();
         }
 
         private void OpenScreen(bool additive, AbstractScreenView screenView)
@@ -118,6 +124,6 @@ namespace AppFoxTest
         {
             screenView.Open();
             _additiveModeActiveScreens.Add(screenView);
-        }      
+        }     
     }
 }

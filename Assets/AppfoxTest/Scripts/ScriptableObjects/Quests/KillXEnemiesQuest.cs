@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace AppFoxTest
@@ -34,7 +35,7 @@ namespace AppFoxTest
         }
         private void OnLevelLoaded(LevelView view)
         {
-            _sceneEvents.OnEntityDead -= OnEntityDead;
+            _progress = new QuestTrackProgress();
         }
 
         private void OnEntityDead(IControlEntityView entity)

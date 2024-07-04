@@ -31,10 +31,12 @@ namespace AppFoxTest
             _sceneEvents.OnPlayerCollect += OnPlayerCollect;
             _sceneEvents.OnLevelLoaded -= OnLevelLoaded;
         }
+
         private void OnLevelLoaded(LevelView view)
         {
-            _sceneEvents.OnPlayerCollect -= OnPlayerCollect;
+            _progress = new QuestTrackProgress();
         }
+
 
         private void OnPlayerCollect(ICollectable collectable)
         {

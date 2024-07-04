@@ -27,6 +27,10 @@ namespace AppFoxTest
             {
                 _sceneEventBus.OnJumpButtonPressed?.Invoke();
             }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _sceneEventBus.OnPauseButtonPressed?.Invoke();
+            }
             if (Input.GetMouseButton(0))
             {
                 _sceneEventBus.OnAttackButtonPressed?.Invoke();

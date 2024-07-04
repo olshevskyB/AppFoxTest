@@ -13,6 +13,7 @@ namespace AppFoxTest
         public Action<Vector2> OnAxisPressed;
         public Action OnJumpButtonPressed;
         public Action OnAttackButtonPressed;
+        public Action OnPauseButtonPressed;
         public Action<Vector3> OnMouseUpdate;
 
         public Action<IControlEntityView> OnEntitySpawn;
@@ -24,7 +25,6 @@ namespace AppFoxTest
         public Action<AbstractQuest> OnQuestComplete;
         public Action<AbstractQuest> OnQuestProgress;
         public Action OnCompleteAllLevelQuest;
-        public Action OnInvokeRestart;
-        
+        public Action OnInvokeRestart;      
     }
 }

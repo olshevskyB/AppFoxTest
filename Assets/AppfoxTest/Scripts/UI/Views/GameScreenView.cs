@@ -1,5 +1,3 @@
-using System;
-
 namespace AppFoxTest
 {
     public class GameScreenView : AbstractScreenView
@@ -16,6 +14,7 @@ namespace AppFoxTest
         {
             base.Open();
             _uiService.OpenScreen<QuestHUDScreenView>(true);
+            _uiService.OpenScreen<PlayerHUDScreenView>(true);
         }
 
         private void OnDestroy()
@@ -25,21 +24,14 @@ namespace AppFoxTest
 
         private void AddListener()
         {
-            _sceneEventBus.OnPlayerSpawn += OnPlayerSpawn;
             _sceneEventBus.OnCompleteAllLevelQuest += OnCompleteAllLevelQuest;
             _sceneEventBus.OnPlayerDeath += OnPlayerDeath;
         }
-    
+
         private void RemoveListener()
         {
-            _sceneEventBus.OnPlayerSpawn -= OnPlayerSpawn;
             _sceneEventBus.OnCompleteAllLevelQuest -= OnCompleteAllLevelQuest;
             _sceneEventBus.OnPlayerDeath -= OnPlayerDeath;
-        }
-
-        private void OnPlayerSpawn(IControlEntityView view)
-        {
-            _uiService.OpenScreen<PlayerHUDScreenView>(true);
         }
 
         private void OnPlayerDeath(IControlEntityView view)

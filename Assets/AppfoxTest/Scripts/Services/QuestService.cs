@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace AppFoxTest
         private ModelLocator _modelLocator;
 
         private IQuestModel _currentModel;
+
+        private LevelView _currentLevel;
+        private List<AbstractQuest> _subscribedQuest = new List<AbstractQuest>();
 
         public void Inject(DIContainer container)
         {
@@ -48,10 +52,12 @@ namespace AppFoxTest
                 _modelLocator.RemoveModel(_currentModel);
             }
             _currentModel = new QuestsModel(view.Quests.ToList());
-            foreach (AbstractQuest quest in _currentModel.Quests)
+            List<AbstractQuest> unsubQuest = _currentModel.Quests.Where(q => !_subscribedQuest.Any(sq => sq != q)).ToList();
+            foreach (AbstractQuest quest in unsubQuest)
             {
                 quest.SetEvents(_globalEvent, _sceneEvent);
-            }
+                _subscribedQuest.Add(quest);
+            }                      
             _modelLocator.AddModel(_currentModel);
         }
         private void OnQuestProgress(AbstractQuest quest)

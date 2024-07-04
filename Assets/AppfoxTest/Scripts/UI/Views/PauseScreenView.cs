@@ -1,13 +1,15 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace AppFoxTest
 {
-    public class WinScreenView : AbstractScreenView
+    public class PauseScreenView : AbstractScreenView
     {
         [SerializeField]
-        private Button _nextLevelButton;
+        private Button _restartButton;
+
+        [SerializeField]
+        private Button _continueButton;
 
         private SceneEventBus _sceneEvents;
 
@@ -15,28 +17,26 @@ namespace AppFoxTest
         {
             base.Inject(container);
             _sceneEvents = container.GetSingle<SceneEventBus>();
+            _restartButton.onClick.AddListener(Restart);
+            _continueButton.onClick.AddListener(Continue);
         }
 
         public override void Open()
         {
-            base.Open();
+            base.Open();         
             ApplicationController.SetPause(true);
         }
 
-        public override void Close()
+        private void Continue()
         {
-            base.Close();
             ApplicationController.SetPause(false);
+            _uiService.OpenScreen<GameScreenView>();
         }
 
-        private void Start()
+        private void Restart()
         {
-            _nextLevelButton.onClick.AddListener(NextLevel);
+            ApplicationController.SetPause(false);
+            _sceneEvents.OnInvokeRestart?.Invoke();
         }
-
-        private void NextLevel()
-        {
-            _sceneEvents?.OnInvokeNextLevel();
-        }   
     }
 }
