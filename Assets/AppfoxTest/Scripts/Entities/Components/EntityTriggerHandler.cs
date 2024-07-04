@@ -39,6 +39,10 @@ namespace AppFoxTest
                     _entityView.GetAttack(attackComponent.AttackValue);
                 _lastAttackId = attackComponent.AttackId;
             }
+            if (other.TryGetComponent(out KillBox killbox))
+            {
+                _entityView.GetAttack(10000);
+            }
         }      
     }
 }
