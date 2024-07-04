@@ -31,7 +31,7 @@ namespace AppFoxTest
         {
             base.Open();
             var playerModel = _modelLocator.Models.OfType<IPlayerEntityModel>().FirstOrDefault();
-            playerModel.OnAddNewView(this);
+            playerModel.AddView(this);
         }
 
         public void GetAttack(float attack)

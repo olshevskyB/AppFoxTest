@@ -1,6 +1,6 @@
 namespace AppFoxTest
 {
-    public interface IEntityView : IView, IInitializable
+    public interface IEntityView : IView
     {
         public int ID
         {

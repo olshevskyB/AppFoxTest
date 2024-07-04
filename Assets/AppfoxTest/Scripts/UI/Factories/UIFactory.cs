@@ -50,7 +50,6 @@ namespace AppFoxTest
 
         private T OnScreenLoaded<T>(T screen) where T : AbstractScreenView
         {
-            screen.Init();
             return screen;
         }
     }

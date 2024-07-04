@@ -14,7 +14,7 @@
             return nameof(StartScreenModel);
         }
 
-        public void OnAddNewView(IView view)
+        public void AddView(IView view)
         {
             if (view is StartScreenView startScreen)
             {

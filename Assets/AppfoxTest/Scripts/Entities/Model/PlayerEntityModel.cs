@@ -24,9 +24,9 @@ namespace AppFoxTest
             _sceneEventBus = container.GetSingle<SceneEventBus>();
         }
 
-        public override void OnAddNewView(IView view)
+        public override void AddView(IView view)
         {
-            base.OnAddNewView(view);
+            base.AddView(view);
             if ((view is PlayerHUDScreenView hud))
             {
                 new GameEntityPresenter(hud, this);

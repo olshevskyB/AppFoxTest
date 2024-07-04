@@ -39,7 +39,7 @@ namespace AppFoxTest
             }
         }
 
-        public void OnAddNewView(IView view)
+        public void AddView(IView view)
         {
             if (view is IQuestHUDScreenView questHUDView)
             {

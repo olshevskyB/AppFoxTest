@@ -14,7 +14,7 @@
             return nameof(GameScreenModel);
         }
 
-        public void OnAddNewView(IView view)
+        public void AddView(IView view)
         {
             if (view is GameScreenView gameView)
             {

@@ -14,7 +14,7 @@ namespace AppFoxTest
             return nameof(MainMenuModel);
         }
 
-        public void OnAddNewView(IView view)
+        public void AddView(IView view)
         {
             if (view is MainMenuScreenView mainMenuScreenView)
             {

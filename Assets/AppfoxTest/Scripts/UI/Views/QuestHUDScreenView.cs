@@ -50,7 +50,7 @@ namespace AppFoxTest
         private void GetModel()
         {
             IQuestModel model = _modelLocator.GetModel<IQuestModel>();
-            model.OnAddNewView(this);
+            model.AddView(this);
         }
 
         public void UpdateQuestText(string text)

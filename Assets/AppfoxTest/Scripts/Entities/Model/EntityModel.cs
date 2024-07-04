@@ -62,7 +62,7 @@ namespace AppFoxTest
             }
         }
 
-        public virtual void OnAddNewView(IView view)
+        public virtual void AddView(IView view)
         {         
             if (view is IEntityView entityView && entityView.ID == _id)
             {

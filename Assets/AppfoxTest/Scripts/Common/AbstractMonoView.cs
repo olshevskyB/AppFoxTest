@@ -2,7 +2,7 @@
 
 namespace AppFoxTest
 {
-    public abstract class AbstractMonoView : MonoBehaviour, IView, IInjectable, IInitializable
+    public abstract class AbstractMonoView : MonoBehaviour, IView, IInjectable
     {
         protected GlobalEventBus _globalEventBus;
         protected UIService _uiService;
@@ -13,10 +13,6 @@ namespace AppFoxTest
         {
             _globalEventBus = container.GetSingle<GlobalEventBus>();
             _uiService = container.GetSingle<UIService>();
-        }
-        public void Init()
-        {
-            _globalEventBus.OnCreateView(this);
         }
 
         public virtual void SetPresenter(IPresenter presenter) 

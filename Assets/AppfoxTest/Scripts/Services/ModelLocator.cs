@@ -1,14 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace AppFoxTest
 {
-    public class ModelLocator : MonoBehaviour, IInjectable, IInitializable
+    public class ModelLocator : MonoBehaviour, IInjectable
     {
         private GlobalEventBus _eventBus;
-        private SceneEventBus _sceneEvenBus;
 
         private List<IModel> _models = new List<IModel>();
 
@@ -17,26 +15,17 @@ namespace AppFoxTest
         public void Inject(DIContainer container)
         {
             _eventBus = container.GetSingle<GlobalEventBus>();
-            _eventBus.OnCreateView += OnCreateNewView;
             _eventBus.OnCreateNewModel += OnCreateNewModel;
         }
 
         public void DeleteLevelContextModels()
         {
             List<ILevelContextModel> _modelsForDelete = _models.OfType<ILevelContextModel>().ToList();
-            _modelsForDelete.ForEach(m => 
-            { 
+            _modelsForDelete.ForEach(m =>
+            {
                 m.Delete();
                 RemoveModel(m);
-            }); 
-        }
-
-        public void Init()
-        {
-            _models.Add(new MainMenuModel());
-            _models.Add(new StartScreenModel());
-            _models.Add(new GameScreenModel());
-            _models.Add(new WinScreenModel());
+            });
         }
 
         public T GetModel<T>() where T : IModel
@@ -57,11 +46,6 @@ namespace AppFoxTest
         private void OnCreateNewModel(IModel model)
         {
             _models.Add(model);
-        }
-
-        private void OnCreateNewView(IView view)
-        {
-            _models.ForEach(m => m.OnAddNewView(view));
         }
     }
 }
