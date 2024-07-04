@@ -8,7 +8,6 @@ namespace AppFoxTest
     {
         [SerializeField]
         private Button _startButton;
-        private MainMenuPresenter _menuPresenter;
         private SceneEventBus _sceneEvent;
 
         public override void Inject(DIContainer container)
