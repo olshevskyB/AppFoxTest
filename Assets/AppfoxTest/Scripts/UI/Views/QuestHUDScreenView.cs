@@ -42,7 +42,7 @@ namespace AppFoxTest
             _sceneEventBus.OnLevelLoaded -= OnLevelLoad;
         }
 
-        private void OnLevelLoad(LevelView view)
+        private void OnLevelLoad(GameLevel level)
         {
             GetModel();
         }

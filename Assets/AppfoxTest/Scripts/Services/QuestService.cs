@@ -12,7 +12,7 @@ namespace AppFoxTest
 
         private IQuestModel _currentModel;
 
-        private LevelView _currentLevel;
+        private GameLevel _currentLevel;
         private List<AbstractQuest> _subscribedQuest = new List<AbstractQuest>();
 
         public void Inject(DIContainer container)
@@ -45,13 +45,13 @@ namespace AppFoxTest
             _sceneEvent.OnQuestComplete -= OnQuestComplete;
         }
 
-        private void OnLevelLoaded(LevelView view)
+        private void OnLevelLoaded(GameLevel level)
         {
             if (_currentModel != null)
             {
                 _modelLocator.RemoveModel(_currentModel);
             }
-            _currentModel = new QuestsModel(view.Quests.ToList());
+            _currentModel = new QuestsModel(level.Quests.ToList());
             List<AbstractQuest> unsubQuest = _currentModel.Quests.Where(q => !_subscribedQuest.Any(sq => sq != q)).ToList();
             foreach (AbstractQuest quest in unsubQuest)
             {

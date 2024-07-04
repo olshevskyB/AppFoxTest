@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    public class LevelView : MonoBehaviour
+    public class GameLevel : MonoBehaviour
     {
         [SerializeField]
         private List<SpawnPoint> _spawnPoints;

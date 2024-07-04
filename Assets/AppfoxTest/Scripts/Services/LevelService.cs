@@ -60,19 +60,19 @@ namespace AppFoxTest
             LoadLevel(_currentLevel);
         }
 
-        private void OnProgress(GameObjectSO<LevelView> so, float progress)
+        private void OnProgress(GameObjectSO<GameLevel> so, float progress)
         {
             _sceneEventBus.OnLevelLoadingProgress?.Invoke(so, progress);
         }
 
-        private void OnLoaded(LevelView level)
+        private void OnLoaded(GameLevel level)
         {
             SetupLevel(level);
             _sceneEventBus.OnLevelLoaded?.Invoke(level);
             _globalEventBus.OnCompleteLoading?.Invoke();
         }
 
-        private void SetupLevel(LevelView level)
+        private void SetupLevel(GameLevel level)
         {
             foreach (SpawnPoint spawnPoint in level.SpawnPoints)
             {

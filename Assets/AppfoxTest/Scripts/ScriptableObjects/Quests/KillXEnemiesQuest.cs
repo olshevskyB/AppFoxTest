@@ -33,7 +33,7 @@ namespace AppFoxTest
             _sceneEvents.OnEntityDead -= OnEntityDead;
             _sceneEvents.OnLevelLoaded -= OnLevelLoaded;
         }
-        private void OnLevelLoaded(LevelView view)
+        private void OnLevelLoaded(GameLevel level)
         {
             _progress = new QuestTrackProgress();
         }

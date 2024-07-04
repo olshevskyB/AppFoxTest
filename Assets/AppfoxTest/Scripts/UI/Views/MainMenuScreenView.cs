@@ -45,7 +45,7 @@ namespace AppFoxTest
             _sceneEvent.OnLevelLoaded -= OnLevelLoaded;
         }
 
-        private void OnLevelLoaded(LevelView view)
+        private void OnLevelLoaded(GameLevel level)
         {
             if (gameObject.activeSelf)
             {

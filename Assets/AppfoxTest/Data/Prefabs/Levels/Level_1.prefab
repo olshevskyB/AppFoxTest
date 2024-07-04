@@ -3291,7 +3291,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8582538218037700429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94cca8c3d9de18d43ad7427797539b24, type: 3}
+  m_Script: {fileID: 11500000, guid: 65cfe3579e73fc6429c2c1f6ce9f69c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoints:
@@ -3305,8 +3305,8 @@ MonoBehaviour:
   - {fileID: 5006192164387732636}
   - {fileID: 1102511109539579903}
   _quests:
-  - {fileID: 11400000, guid: 69fc97c4f46ac5d4a94e294b30927a02, type: 2}
   - {fileID: 11400000, guid: df1b32f495ad11f4095703458222ca7c, type: 2}
+  - {fileID: 11400000, guid: 69fc97c4f46ac5d4a94e294b30927a02, type: 2}
 --- !u!1 &8639484086074479706
 GameObject:
   m_ObjectHideFlags: 0
