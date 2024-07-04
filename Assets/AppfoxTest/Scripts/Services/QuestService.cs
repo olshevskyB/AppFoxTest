@@ -53,7 +53,7 @@ namespace AppFoxTest
                 _modelLocator.RemoveModel(_currentModel);
             }
             _currentModel = new QuestsModel(level.Quests.ToList());
-            List<AbstractQuest> unsubQuest = _currentModel.Quests.Where(q => !_subscribedQuest.Any(sq => sq != q)).ToList();
+            List<AbstractQuest> unsubQuest = _currentModel.Quests.Where(q => !_subscribedQuest.Contains(q)).ToList();
             foreach (AbstractQuest quest in unsubQuest)
             {
                 quest.SetEvents(_globalEvent, _sceneEvent);
