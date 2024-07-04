@@ -25,7 +25,7 @@ namespace AppFoxTest
             transform.LookAt(position, Vector3.up);
         }
 
-        public override void MoveByDirection(Vector3 direction)
+        public override void MoveByDirection(Vector3 direction, float deltaTime)
         {
             _meshAgent.SetDestination(transform.position + direction.normalized);
         }

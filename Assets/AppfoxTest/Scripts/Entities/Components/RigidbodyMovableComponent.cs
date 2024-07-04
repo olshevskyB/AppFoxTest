@@ -16,6 +16,9 @@ namespace AppFoxTest
         [SerializeField]
         private float _raycastDistance;
 
+        [SerializeField]
+        private float _velocity = 30f;
+
         private bool _canDoJump
         {
             get
@@ -28,10 +31,11 @@ namespace AppFoxTest
             }
         }
 
-        public override void MoveByDirection(Vector3 direction)
+        public override void MoveByDirection(Vector3 direction, float deltaTime)
         {
             direction = direction.normalized;
-            _rigidbody.MovePosition(transform.position + direction * Time.deltaTime * _movementSpeed);
+            Vector3 movement = _movementSpeed * _velocity * deltaTime * direction;
+            _rigidbody.velocity = new Vector3(movement.x, _rigidbody.velocity.y, movement.z);
         }
 
         public override void LookAt(Vector3 position)

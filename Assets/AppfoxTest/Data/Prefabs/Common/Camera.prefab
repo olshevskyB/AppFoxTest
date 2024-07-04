@@ -108,3 +108,5 @@ MonoBehaviour:
   _camera: {fileID: 2109578679438150751}
   _cameraOffset: {x: 0, y: 14, z: -8}
   _cameraSpeed: 8
+  _cameraMaxDistance: 30
+  _cameraMinToMoveDistance: 5

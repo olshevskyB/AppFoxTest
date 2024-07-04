@@ -20,7 +20,6 @@ namespace AppFoxTest
             }
             set
             {
-                Debug.Log($"Attacked model {_id} Current HP {_hp} New Value {value}");
                 if (value == HP)
                     return;               
                 _hp = value;

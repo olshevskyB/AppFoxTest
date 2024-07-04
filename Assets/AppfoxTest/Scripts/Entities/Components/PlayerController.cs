@@ -6,9 +6,13 @@ namespace AppFoxTest
     [RequireComponent(typeof(PlayerTriggerHandler))]
     public class PlayerController : EntityController
     {
-        private void Update()
+        private Vector3 _movementOnNextFrame;
+        private Vector3 _lookAtPosition;
+
+        public void FixedUpdate()
         {
-            Debug.DrawLine(transform.position, transform.forward * 5f, Color.red);
+            _movable.MoveByDirection(_movementOnNextFrame, Time.fixedDeltaTime);
+            _movementOnNextFrame = Vector3.zero;
         }
 
         private void OnDestroy()
@@ -34,19 +38,22 @@ namespace AppFoxTest
 
         private void OnMouseUpdate(Vector3 position)
         {
-            if(!_attackComponent.IsAttack)
-                _movable.LookAt(position);
+            _lookAtPosition = position;
         }
 
         private void OnAttackButtonPressed()
         {
-            Attack();
+            if (!_attackComponent.IsAttack)
+            {
+                _movable.LookAt(_lookAtPosition);
+                Attack();
+            }          
         }
 
         private void OnAxisPressed(Vector2 vector)
         {
             Vector3 floorVector = new Vector3(vector.x, 0f, vector.y);
-            _movable.MoveByDirection(floorVector * 15f);
+            _movementOnNextFrame = floorVector;           
         }
 
         private void OnJumpButtonPressed()

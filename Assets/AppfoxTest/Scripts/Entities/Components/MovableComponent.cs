@@ -8,7 +8,7 @@ namespace AppFoxTest
 
         public abstract void LookAt(Vector3 position);
 
-        public abstract void MoveByDirection(Vector3 direction);
+        public abstract void MoveByDirection(Vector3 direction, float deltaTime);
 
         public abstract void MoveByDestination(Vector3 destination);
 
