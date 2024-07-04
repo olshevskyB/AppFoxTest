@@ -18,7 +18,7 @@ namespace AppFoxTest
             _globalEventBus = container.GetSingle<GlobalEventBus>();
             _diContainer = container;
         }
-
+        
         public IEntityView CreateEntityAtSpawnPoint(Transform parent, SpawnPoint spawnPoint, IUnloader unloader)
         {
             if (spawnPoint.TrySelectEntity(out EntitySO entity))
@@ -35,6 +35,7 @@ namespace AppFoxTest
                 loadedEntity.SetParent(parent.transform);
                 loadedEntity.SetPositionAndRotation(spawnPoint.transform.position, spawnPoint.transform.rotation);
                 loadedEntity.StartPosition = spawnPoint.transform;
+                //При создании новой вида, обязательно нужно оповестить об этом модель, подробнее смотреть в MainInstaller
                 entityModel.AddView(loadedEntity);
 
                 _sceneEvents.OnEntitySpawn?.Invoke(loadedEntity);

@@ -6,8 +6,6 @@ namespace AppFoxTest
 {
     public class PlayerHUDScreenView : AbstractScreenView, IEntityView
     {
-        private IEntityPresenter _entityPresenter;
-
         [SerializeField]
         private Image _hpFillBar;
 

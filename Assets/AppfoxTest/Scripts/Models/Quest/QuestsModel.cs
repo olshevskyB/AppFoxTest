@@ -54,10 +54,5 @@ namespace AppFoxTest
                 _presenter = null;
             }
         }
-
-        public string GetLogText()
-        {
-            return nameof(QuestsModel);
-        }
     }
 }

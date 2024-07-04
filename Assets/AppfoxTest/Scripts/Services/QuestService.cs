@@ -12,7 +12,6 @@ namespace AppFoxTest
 
         private IQuestModel _currentModel;
 
-        private GameLevel _currentLevel;
         private List<AbstractQuest> _subscribedQuest = new List<AbstractQuest>();
 
         public void Inject(DIContainer container)
@@ -45,6 +44,8 @@ namespace AppFoxTest
             _sceneEvent.OnQuestComplete -= OnQuestComplete;
         }
 
+        //Удаляем старую модель квестов и создаем новую с новым квестами
+        //Также мы проверяем SO квестов нового уровня, были ли ли они уже подписаны на игровые события, если нет, то подписываем их и добавляем в коллекцию подписанных 
         private void OnLevelLoaded(GameLevel level)
         {
             if (_currentModel != null)
