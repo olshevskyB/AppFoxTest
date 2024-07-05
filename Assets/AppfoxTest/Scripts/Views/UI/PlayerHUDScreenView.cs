@@ -13,9 +13,16 @@ namespace AppFoxTest
         [SerializeField]
         private Image _manaFillBar;
 
+        [SerializeField]
+        private List<Icon> _icons;
+
+        private Dictionary<AbstractSpell, Icon> _spells = new Dictionary<AbstractSpell, Icon>();
+
         private PlayerSO _playerSo;
 
         private ModelLocator _modelLocator;
+
+        private float _mana;
 
         public int ID 
         { 
@@ -59,6 +66,7 @@ namespace AppFoxTest
         public void SetMana(float mana)
         {
             _manaFillBar.fillAmount = mana / _playerSo.Mana;
+            CheckMana();
         }
 
         public void SetMovementSpeed(float speed)
@@ -73,7 +81,25 @@ namespace AppFoxTest
 
         public void SetSpells(List<AbstractSpell> spells)
         {
-            
+            _spells.Clear();
+
+            for (int i = 0; i < _icons.Count; i++)
+            {
+                Sprite sprite = spells.Count >= i ? null : spells[i].Icon;
+                _icons[i].Sprite = sprite;
+                if (spells.Count >= i)
+                    return;
+                _spells[spells[i]] = _icons[i];
+            }
+            CheckMana();
+        }
+
+        private void CheckMana()
+        {
+            foreach (var spell in _spells)
+            {
+                spell.Value.SetInactive(spell.Key.ManaConsume > _mana);
+            }
         }
     }
 }

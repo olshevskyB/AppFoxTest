@@ -9,6 +9,7 @@ namespace AppFoxTest
         public void SetSpell(AbstractSpell spell)
         {
             _spell = spell;
+            _attack = spell.Damage;
         }
     }
 }

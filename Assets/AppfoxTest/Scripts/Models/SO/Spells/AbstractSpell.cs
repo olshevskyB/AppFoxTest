@@ -17,6 +17,7 @@ namespace AppFoxTest
         private SpellComponent _spellPrefab;
         public SpellComponent SpellPrefab => _spellPrefab;
 
+        [SerializeField]
         private Sprite _icon;
         public Sprite Icon => _icon;
     }

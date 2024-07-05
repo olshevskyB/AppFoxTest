@@ -29,7 +29,7 @@ namespace AppFoxTest
 
         private ITimer _timer;
 
-        private float _attack;
+        protected float _attack;
 
         public bool IsAttack => _timer[this];
 
