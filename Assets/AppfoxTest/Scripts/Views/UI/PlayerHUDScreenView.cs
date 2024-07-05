@@ -66,6 +66,7 @@ namespace AppFoxTest
         public void SetMana(float mana)
         {
             _manaFillBar.fillAmount = mana / _playerSo.Mana;
+            _mana = mana;
             CheckMana();
         }
 

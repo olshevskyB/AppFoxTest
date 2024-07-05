@@ -84,7 +84,7 @@ namespace AppFoxTest
             if (_availableSpells.Count > index)
             {
                 SpellComponent spell = _availableSpells[index];
-                if (_playerPresenter.TryUseSpell(spell.Spell))
+                if (!spell.IsAttack && _playerPresenter.TryUseSpell(spell.Spell))
                 {
                     spell.Attack();
                 }

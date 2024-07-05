@@ -48,7 +48,7 @@ namespace AppFoxTest
 
             foreach (AbstractSpell spell in _spells)
             {
-                SpellComponent spellComponent = _prefabLoader.Load(spell.SpellPrefab, _unloader, Vector3.zero, Quaternion.identity, _spellsRoot);
+                SpellComponent spellComponent = _prefabLoader.Load(spell.SpellPrefab, _unloader, _spellsRoot.transform.position, _spellsRoot.transform.rotation, _spellsRoot);
                 spellComponent.SetSpell(spell);
                 _availableSpells.Add(spellComponent);
             }
