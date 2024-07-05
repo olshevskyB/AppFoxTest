@@ -13,7 +13,7 @@ namespace AppFoxTest
         [SerializeField]
         private Color _inactiveColor;
 
-        private void Start()
+        public void Awake()
         {
             _startColor = _image.color;
         }

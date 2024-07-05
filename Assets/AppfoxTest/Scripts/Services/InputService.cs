@@ -31,11 +31,11 @@ namespace AppFoxTest
             {
                 _sceneEventBus.OnPauseButtonPressed?.Invoke();
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 _sceneEventBus.OnSpell1ButtonPressed?.Invoke();
             }
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.V))
             {
                 _sceneEventBus.OnSpell2ButtonPressed?.Invoke();
             }

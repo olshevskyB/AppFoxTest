@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace AppFoxTest
 {
-    public class ThrowBladeSpellAttackComponent : SpellComponent
+    public class InvokeSkullAttackComponent : SpellComponent
     {
         [SerializeField] protected Transform _root;
-        protected ThrowBladeSpell BladeSpell => _spell as ThrowBladeSpell;
+        protected InvokeSkullSpell SkullSpell => _spell as InvokeSkullSpell;
 
         protected Vector3 _forward;
         protected Vector3 _startPosition;
@@ -27,8 +27,7 @@ namespace AppFoxTest
 
         protected override void UpdateAttack(float time, float progress)
         {
-            _root.position = Vector3.Lerp(_startPosition, _startPosition + _forward * BladeSpell.ThrowingRange, progress);
-            _root.Rotate(_root.up, BladeSpell.RotationSpeed * Time.deltaTime);
+            _root.position = Vector3.Lerp(_startPosition, _startPosition + _forward * SkullSpell.Range, progress);
         }
 
         protected override void OnEndAttack()
@@ -36,7 +35,6 @@ namespace AppFoxTest
             base.OnEndAttack();
             _root.gameObject.SetActive(false);
             _root.localPosition = _rootInitLocalPosition;
-            _root.localRotation = Quaternion.identity;
         }
     }
 }

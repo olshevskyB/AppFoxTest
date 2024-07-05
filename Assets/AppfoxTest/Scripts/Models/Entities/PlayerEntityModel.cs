@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace AppFoxTest
 {
-    public class PlayerEntityModel : EntityModel, IPlayerEntityModel, IInjectable
+    public class PlayerEntityModel : EntityModel, IPlayerEntityModel, IInjectable, IUpdateModel
     {
         private List<ICollectable> _collectables = new List<ICollectable>();
         private List<IPlayerPresenter> _playerPresenter = new List<IPlayerPresenter>();
@@ -79,6 +79,11 @@ namespace AppFoxTest
         {
             _spells = spells;
             _playerPresenter.ForEach(pp => pp.UpdateSpells());
+        }
+
+        public void Update(float deltaTime)
+        {
+            Mana += _manaRegeneration * deltaTime;
         }
     }
 }
