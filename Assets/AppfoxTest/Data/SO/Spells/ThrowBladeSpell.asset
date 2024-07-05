@@ -15,5 +15,6 @@ MonoBehaviour:
   _manaConsume: 15
   _damage: 25
   _spellPrefab: {fileID: -8868487070792442981, guid: 6e0757614eab2114eaa3bc95b5743f23, type: 3}
+  _icon: {fileID: 21300000, guid: 7092324b93851a14c858530cca4a6b26, type: 3}
   _throwingRange: 10
   _rotationSpeed: 720

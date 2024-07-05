@@ -85,9 +85,9 @@ namespace AppFoxTest
 
             for (int i = 0; i < _icons.Count; i++)
             {
-                Sprite sprite = spells.Count >= i ? null : spells[i].Icon;
+                Sprite sprite = spells.Count <= i ? null : spells[i].Icon;
                 _icons[i].Sprite = sprite;
-                if (spells.Count >= i)
+                if (spells.Count <= i)
                     return;
                 _spells[spells[i]] = _icons[i];
             }
