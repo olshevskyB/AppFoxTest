@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 namespace AppFoxTest
 {
@@ -10,27 +10,27 @@ namespace AppFoxTest
 
         public override void Init()
         {
-            //Контейнер взаимодействуют с помощью интерфейсов IInjectable и IInitializable, оба интерфейса - не обязательны
+            //РљРѕРЅС‚РµР№РЅРµСЂ РІР·Р°РёРјРѕРґРµР№СЃС‚РІСѓСЋС‚ СЃ РїРѕРјРѕС‰СЊСЋ РёРЅС‚РµСЂС„РµР№СЃРѕРІ IInjectable Рё IInitializable, РѕР±Р° РёРЅС‚РµСЂС„РµР№СЃР° - РЅРµ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹
             _diContainer.AddNewObjectAndInit(new GlobalEventBus());
             _diContainer.AddNewObjectAndInit(new SceneEventBus());
             _diContainer.AddNewObjectAndInit(_scenesConfig);
             _diContainer.AddNewObjectAndInit(_screensConfig);
 
-            //Сюда должны добавляться все новые модели, затем при инициализации View мы запрашиваем отсюда нужную модель, и вызываем у модели метод AddView,
-            //который сам создаст Presenter и укажет связи, между View, Model и Presenter. Модель будет сама вызывать методы презентора для обновления данных при необходимости
+            //РЎСЋРґР° РґРѕР»Р¶РЅС‹ РґРѕР±Р°РІР»СЏС‚СЊСЃСЏ РІСЃРµ РЅРѕРІС‹Рµ РјРѕРґРµР»Рё, Р·Р°С‚РµРј РїСЂРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё View РјС‹ Р·Р°РїСЂР°С€РёРІР°РµРј РѕС‚СЃСЋРґР° РЅСѓР¶РЅСѓСЋ РјРѕРґРµР»СЊ, Рё РІС‹Р·С‹РІР°РµРј Сѓ РјРѕРґРµР»Рё РјРµС‚РѕРґ AddView,
+            //РєРѕС‚РѕСЂС‹Р№ СЃР°Рј СЃРѕР·РґР°СЃС‚ Presenter Рё СѓРєР°Р¶РµС‚ СЃРІСЏР·Рё, РјРµР¶РґСѓ View, Model Рё Presenter. РњРѕРґРµР»СЊ Р±СѓРґРµС‚ СЃР°РјР° РІС‹Р·С‹РІР°С‚СЊ РјРµС‚РѕРґС‹ РїСЂРµР·РµРЅС‚РѕСЂР° РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ РґР°РЅРЅС‹С… РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<ModelLocator>());
-            //Unloader используются как аргумент в loader - каждая фабрика должна иметь собственную копию unloader.
+            //Unloader РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ РєР°Рє Р°СЂРіСѓРјРµРЅС‚ РІ loader - РєР°Р¶РґР°СЏ С„Р°Р±СЂРёРєР° РґРѕР»Р¶РЅР° РёРјРµС‚СЊ СЃРѕР±СЃС‚РІРµРЅРЅСѓСЋ РєРѕРїРёСЋ unloader.
             _diContainer.AddNewObjectAndInit(new Unloader());
-            //Должен быть во всех фабриках, он также инжектит все объекты при загрузке.
+            //Р”РѕР»Р¶РµРЅ Р±С‹С‚СЊ РІРѕ РІСЃРµС… С„Р°Р±СЂРёРєР°С…, РѕРЅ С‚Р°РєР¶Рµ РёРЅР¶РµРєС‚РёС‚ РІСЃРµ РѕР±СЉРµРєС‚С‹ РїСЂРё Р·Р°РіСЂСѓР·РєРµ.
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<PrefabLoader>());
 
             _diContainer.AddNewObjectAndInit(new UIFactory());
-            //При инициализации сервис запрашивает у UIFactory создать стартовый загрузочный экран 
+            //РџСЂРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё СЃРµСЂРІРёСЃ Р·Р°РїСЂР°С€РёРІР°РµС‚ Сѓ UIFactory СЃРѕР·РґР°С‚СЊ СЃС‚Р°СЂС‚РѕРІС‹Р№ Р·Р°РіСЂСѓР·РѕС‡РЅС‹Р№ СЌРєСЂР°РЅ 
             _diContainer.AddNewObjectAndInit(CreateAsGameObject<UIService>());
 
             ISceneLoader sceneLoader = CreateAsGameObject<SceneLoader>();
             _diContainer.AddNewObjectAndInit(sceneLoader);
-            //Инициализация сервиса запрашивает загрузку основной сцены
+            //РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃРµСЂРІРёСЃР° Р·Р°РїСЂР°С€РёРІР°РµС‚ Р·Р°РіСЂСѓР·РєСѓ РѕСЃРЅРѕРІРЅРѕР№ СЃС†РµРЅС‹
             _diContainer.AddNewObjectAndInit(_sceneService);
         }
     }

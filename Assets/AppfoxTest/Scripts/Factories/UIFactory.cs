@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 namespace AppFoxTest
@@ -40,7 +40,7 @@ namespace AppFoxTest
 
         private void LoadScreenAsync<T>(Action<T> callback, ScreenSO prefab) where T : AbstractScreenView
         {
-            //InstantiateAsync ëîìàåò RectTransform https://forum.unity.com/threads/object-instantiateasync-not-working-with-ui-prefabs.1551740/
+            //InstantiateAsync Ð»Ð¾Ð¼Ð°ÐµÑ‚ RectTransform https://forum.unity.com/threads/object-instantiateasync-not-working-with-ui-prefabs.1551740/
             _loader.LoadAsync(prefab, _unloader, (screen) =>
             {
                 T newScreen = OnScreenLoaded((T)screen);

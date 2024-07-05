@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 namespace AppFoxTest
 {
@@ -33,7 +33,7 @@ namespace AppFoxTest
                 IControlEntityView loadedEntity = _prefabLoader.Load(entity.EntityPrefab, unloader, spawnPoint.transform.position, spawnPoint.transform.rotation, parent.transform);
                 loadedEntity.ID = _iteration;
                 loadedEntity.StartPosition = spawnPoint.transform;
-                //При создании новой вида, обязательно нужно оповестить об этом модель, подробнее смотреть в MainInstaller
+                //РџСЂРё СЃРѕР·РґР°РЅРёРё РЅРѕРІРѕР№ РІРёРґР°, РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ РЅСѓР¶РЅРѕ РѕРїРѕРІРµСЃС‚РёС‚СЊ РѕР± СЌС‚РѕРј РјРѕРґРµР»СЊ, РїРѕРґСЂРѕР±РЅРµРµ СЃРјРѕС‚СЂРµС‚СЊ РІ MainInstaller
                 entityModel.AddView(loadedEntity);
 
                 _sceneEvents.OnEntitySpawn?.Invoke(loadedEntity);
